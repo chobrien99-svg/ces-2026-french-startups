@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CES 2026 French Startups Directory | French Tech Journal</title>
+    <meta name="description" content="Discover 53 innovative French startups exhibiting at CES 2026 in Las Vegas. Search by sector, explore products, and connect with France's tech ecosystem.">
+    <meta property="og:title" content="CES 2026 French Startups Directory">
+    <meta property="og:description" content="53 innovative French startups at CES Las Vegas - Health Tech, AI, Green Tech, Cybersecurity and more.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #111827;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07);
+            --border-subtle: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-violet: #8b5cf6;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #0f172a 50%, #1e1b4b 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        /* Ambient background effects */
+        .bg-effects {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .bg-effects::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+            filter: blur(60px);
+        }
+        .bg-effects::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            left: -10%;
+            width: 35%;
+            height: 35%;
+            background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
+            filter: blur(60px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10,15,26,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.25rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 15px rgba(139,92,246,0.3);
+        }
+        
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .brand-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .brand-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #fff, #c7d2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header-stats {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .stat-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .stat-badge.highlight {
+            background: rgba(59,130,246,0.1);
+            border-color: rgba(59,130,246,0.3);
+            color: #93c5fd;
+        }
+        
+        /* Search & Filters */
+        .filters-section {
+            padding: 1.5rem 0;
+        }
+        
+        .search-row {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        .search-wrapper {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 2.75rem 0.875rem 2.75rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .search-input::placeholder { color: var(--text-muted); }
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(59,130,246,0.5);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+        
+        .clear-btn {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 4px;
+            display: none;
+        }
+        .clear-btn.visible { display: block; }
+        .clear-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.1); }
+        
+        .sector-select {
+            padding: 0.875rem 2.5rem 0.875rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            cursor: pointer;
+            min-width: 200px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+        }
+        .sector-select:focus {
+            outline: none;
+            border-color: rgba(59,130,246,0.5);
+        }
+        .sector-select option { background: #1e293b; }
+        
+        /* Sector pills */
+        .sector-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .sector-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .sector-pill:hover { background: rgba(255,255,255,0.08); }
+        .sector-pill.active {
+            background: rgba(59,130,246,0.15);
+            border-color: rgba(59,130,246,0.4);
+            color: #93c5fd;
+        }
+        
+        .results-info {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .results-info strong { color: var(--text-primary); }
+        .results-info .highlight { color: var(--accent-blue); }
+        
+        /* Startup Grid */
+        .startup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1rem;
+            padding-bottom: 3rem;
+        }
+        
+        @media (max-width: 400px) {
+            .startup-grid { grid-template-columns: 1fr; }
+        }
+        
+        .startup-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .startup-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.4);
+        }
+        
+        .card-content { padding: 1.25rem; }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .card-title-group { flex: 1; min-width: 0; }
+        
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.15rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .card-website {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .card-link {
+            flex-shrink: 0;
+            padding: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .card-link:hover {
+            background: rgba(59,130,246,0.2);
+            color: #93c5fd;
+        }
+        
+        .sector-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+        
+        .card-description {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-description.expanded {
+            -webkit-line-clamp: unset;
+        }
+        
+        .card-product {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+        
+        .product-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-text {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            line-height: 1.55;
+        }
+        
+        .card-toggle {
+            width: 100%;
+            padding: 0.65rem;
+            background: rgba(255,255,255,0.02);
+            border: none;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            transition: all 0.2s;
+        }
+        .card-toggle:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-primary);
+        }
+        .card-toggle svg {
+            transition: transform 0.2s;
+        }
+        .card-toggle.expanded svg {
+            transform: rotate(180deg);
+        }
+        
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .empty-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+        .empty-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+        .empty-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 1.5rem 0;
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+        }
+        .footer-text {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .footer-link {
+            color: rgba(59,130,246,0.7);
+            text-decoration: none;
+        }
+        .footer-link:hover { color: var(--accent-blue); }
+        
+        /* Sector colors */
+        .sector-health { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+        .sector-ai { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .sector-green { background: rgba(132,204,22,0.15); color: #bef264; border: 1px solid rgba(132,204,22,0.3); }
+        .sector-cyber { background: rgba(244,63,94,0.15); color: #fda4af; border: 1px solid rgba(244,63,94,0.3); }
+        .sector-consumer { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+        .sector-smart { background: rgba(6,182,212,0.15); color: #67e8f9; border: 1px solid rgba(6,182,212,0.3); }
+        .sector-entertainment { background: rgba(236,72,153,0.15); color: #f9a8d4; border: 1px solid rgba(236,72,153,0.3); }
+        .sector-industry { background: rgba(249,115,22,0.15); color: #fdba74; border: 1px solid rgba(249,115,22,0.3); }
+        .sector-mobility { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .sector-fintech { background: rgba(234,179,8,0.15); color: #fde047; border: 1px solid rgba(234,179,8,0.3); }
+        .sector-aibiz { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+        .sector-edtech { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.3); }
+        .sector-retail { background: rgba(217,70,239,0.15); color: #e879f9; border: 1px solid rgba(217,70,239,0.3); }
+        .sector-sport { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+        .sector-telecom { background: rgba(14,165,233,0.15); color: #7dd3fc; border: 1px solid rgba(14,165,233,0.3); }
+        .sector-gaming { background: rgba(168,85,247,0.15); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.3); }
+    </style>
+</head>
+<body>
+    <div class="bg-effects"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <div class="brand-icon">✨</div>
+                    <div class="brand-text">
+                        <span class="brand-label">French Tech Journal</span>
+                        <h1 class="brand-title">CES 2026 French Startups</h1>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <span class="stat-badge">🌍 Las Vegas</span>
+                    <span class="stat-badge highlight">👥 <span id="total-count">53</span> startups</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <section class="filters-section">
+                <div class="search-row">
+                    <div class="search-wrapper">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                        <input type="text" class="search-input" id="search" placeholder="Search startups, products, technologies...">
+                        <button class="clear-btn" id="clear-search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                    <select class="sector-select" id="sector-filter">
+                        <option value="All">All Sectors (53)</option>
+                    </select>
+                </div>
+                
+                <div class="sector-pills" id="sector-pills"></div>
+                
+                <p class="results-info" id="results-info">
+                    Showing <strong id="showing-count">53</strong> startups
+                </p>
+            </section>
+            
+            <div class="startup-grid" id="startup-grid"></div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p class="footer-text">Data sourced from Business France • CES 2026 Las Vegas</p>
+            <p class="footer-text" style="margin-top:0.25rem">© 2026 <a href="https://frenchtechjournal.com" class="footer-link">French Tech Journal</a></p>
+        </div>
+    </footer>
+
+    <script>
+    const startups = [
+      { name: "Acquire To Decide (A2D)", website: "a2d.ai", description: "A2D, an 8-year-old innovative software company, turns raw field data into actionable insights. Our AI solution lets project and asset managers monitor infrastructure health, anticipate issues, and make faster, safer, more informed decisions.", product: "A2D offers the market's only solution combining secure cloud SaaS and embedded AI for infrastructure asset inspection.", sector: "SMART HOME / SMART CITY" },
+      { name: "ALGOS", website: "algos-ai.com", description: "Algos operates at the intersection of strategic innovation and technical execution, offering dual expertise as an AI software company and strategic consulting firm.", product: "Omnisian is the industry's first AI OS, orchestrating specialized AIs for enterprise-grade accuracy, traceability, and sovereignty.", sector: "ROBOTICS / AI" },
+      { name: "AUUM", website: "auum.com", description: "AUUM develops steam-based cleaning technology to replace single-use waste. Our flagship machine cleans and dries cups and glasses in 10 seconds.", product: "Our 20-second steam technology cleans and dries with almost no water and no chemicals, enabling scalable, convenient reuse.", sector: "GREEN TECH" },
+      { name: "Avatar Medical", website: "avatarmedical.ai", description: "Avatar Medical transforms the clinic experience with patient-specific 3D and XR avatars generated instantly from medical scans. FDA-cleared and CE-marked.", product: "Eonis Vision turns CT/MRI scans into floating 3D avatars that patients and doctors explore together—no headset needed.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "Baracoda Labs", website: "us.kolibree.com", description: "Baracoda Labs designs connected, eco-responsible technologies for preventive health. 70+ patents, 17 toothbrush models sold in 50 countries, 3 CES Awards.", product: "Kolibree Kids is an AI-powered hygiene system turning toothbrushing, handwashing, and face washing into playful guided games.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "COLORFOL", website: "colorfol.com", description: "Colorfol is a pan-African platform for discovering, distributing, and monetizing music and cultural content through inclusive digital solutions.", product: "Pan-African music-tech platform integrating streaming, distribution, and mobile payments with AI recommendations and artist analytics.", sector: "ENTERTAINMENT" },
+      { name: "DATAVIZX by PRODEVA", website: "datavizx.com", description: "DATAVIZX turns accounting and business data into actionable insights through automated dashboards with Power BI and Zebra BI technologies.", product: "Intelligent BI tools that automate accounting data analysis powered by Power BI, Sage BI, Zebra BI, and AI-driven predictive analytics.", sector: "FINTECH" },
+      { name: "Deglace", website: "deglace.tech", description: "Deglace designs modular, AI-powered home appliances built to last. Breaking free from throwaway culture to redefine durability.", product: "Fraction is the world's first modular smart vacuum. Designed to last 5× longer with swappable modules and AI-driven self-diagnosis.", sector: "CONSUMER TECH / LIFESTYLE" },
+      { name: "DEVANA", website: "devana.ai", description: "Devana shapes the future of sovereign AI for governments, finance, and critical sectors with hybrid AI systems from edge to HPC.", product: "DIWY: The first sovereign AI-in-the-box. Titanium-sealed hardware running Devana OS, fully offline and compliant by design.", sector: "CONSUMER TECH / LIFESTYLE" },
+      { name: "DIGIPAIR", website: "digipair.ai", description: "The First Complete Agentic Suite for enterprises—sovereign, explainable, and controllable, powered by open-source agentic engine.", product: "The first agentic digital assistant that can use all company applications and data with the ability to learn using natural language.", sector: "AI Business Solution" },
+      { name: "Dracula Technologies", website: "dracula-technologies.com", description: "Pioneers sustainable energy with LAYER® technology, revolutionizing low-power electronics. Factory produces 150 million cm² of OPV devices annually.", product: "LAYER® harvests ambient light for low-power electronics; LAYER®Vault combines energy harvesting and storage—a world first.", sector: "GREEN TECH" },
+      { name: "DUKE ANALYTICS", website: "duke-ai.io", description: "The Conversational AI Data Department That Lives in Your Workflow.", product: "From scattered data to critical decisions in 3 clicks. Ask naturally where it matters most—get answers that drive action.", sector: "RETAIL TECH" },
+      { name: "EPSEED", website: "epseed.com", description: "French company developing secure, sovereign and autonomous environments for hybrid work and education on any device, anywhere.", product: "SEED transforms any computer into a secure, unified workspace—ideal for hybrid work, BYOD, and standardized school environments.", sector: "CYBERSECURITY" },
+      { name: "facildata", website: "facildata.com", description: "The AI that gives buildings a voice. It understands data, predicts failures, and optimizes every intervention.", product: "Smart QR codes with AI agent support for facility managers—faster reporting, fewer site visits, better tracking.", sector: "SMART HOME / SMART CITY" },
+      { name: "Freecovery", website: "freecoveryshop.com", description: "Rewriting the rules of muscle recovery with patent-pending Click & Freeze™ tech. No wires, no waiting rooms.", product: "Freepad: first portable cryo system. No wires, no prep. Clinically proven, athlete approved. 15 minutes to recover.", sector: "SPORT TECH" },
+      { name: "HANDILAB", website: "handilab.com", description: "First innovation accelerator dedicated to disability and loss of autonomy. 13,000 m² ecosystem in Grand Paris.", product: "Dynamic ecosystem fostering interdisciplinary collaboration between startups, companies, and research institutions.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "HOPE VALLEY AI", website: "hopevalley.ai", description: "Fourth-generation AI-based risk screening platform for smart digital oncology—prevention, risk prediction, early detection years in advance.", product: "Trustworthy AI enabling patients and clinicians to anticipate cancer risk and rare events years in advance.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "IMATAG", website: "imatag.com", description: "French pioneer in digital watermarking since 2015. Protecting and authenticating visual content with invisible watermarks.", product: "IMATAG Authenticity embeds invisible, tamper-proof watermarks that survive compression and AI manipulation.", sector: "CYBERSECURITY" },
+      { name: "InsideQuest", website: "insidequest.game", description: "Revolutionary SaaS platform gamifying business processes through quests and mini-games for engagement and productivity.", product: "Transforms workflows into game-like missions with AI-driven personalization, boosting engagement and performance.", sector: "GAMING" },
+      { name: "LEXILENS by ABEYE", website: "lexilens.com", description: "Neuroscience deeptech focusing on the neurovisual system. CES award 2020 for reading comfort technology.", product: "Lexilens® Screen modifies light to ease brain processing and improve reading comfort and comprehension.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "LILI FOR LIFE", website: "liliforlife.com", description: "Changing lives of dyslexic people (8% of world population) since 2020 through scientific research and LILI technology.", product: "LILI display with patented strobe light technology—reading comfort, comprehension, reduced fatigue for dyslexic persons.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "Linxens", website: "linxens.com", description: "Designs and manufactures electronic components for connecting objects—payments, tracking, connected healthcare.", product: "Reusable Track & Sign label: solar-powered, NFC-secured with signature area sensor for high-value goods.", sector: "SMART HOME / SMART CITY" },
+      { name: "Luchrome", website: "luchrome.com", description: "Pioneering next-gen electronic display technology with ultra-low-power reflective displays for connected objects.", product: "First fully printed, metal-free display using carbon-based compounds. No backlight, 10x less energy, recyclable.", sector: "INDUSTRY 4.0" },
+      { name: "MAILVISTA by TEAMWAY", website: "mailvista.ai", description: "Intelligent Inbox Solution combining advanced AI and eco-conscious design for personalized email management.", product: "Instant access, intelligent prioritization, automatic summaries, and integrated CO2 counter for sustainable email.", sector: "AI Business Solution" },
+      { name: "Mr Suricate", website: "mrsuricate.com", description: "French no-code testing platform for web, mobile, and API automation. Reduces up to 40% of production bugs.", product: "Suricate.ai: AI execution engine transforming decisions into real actions across web, mobile, and API at scale.", sector: "ROBOTICS / AI" },
+      { name: "NEOIA", website: "neoia.net", description: "Technology company revolutionizing photovoltaic cleaning with autonomous robots.", product: "Autonomous solar panel cleaning robot using dew—patented, completely autonomous, three years of R&D.", sector: "ROBOTICS / AI" },
+      { name: "O GROUP", website: "groupe-o.com", description: "Integrated, nature-inspired water technologies: phyto-filtration, bio-filtration, and home water-autonomy systems.", product: "Infinit'O™: first end-to-end home water-autonomy system—captures rain, regenerates, reuses 10+ times.", sector: "GREEN TECH" },
+      { name: "ONIZIO", website: "onizio.com", description: "Making 3D scanning optimized and simple with powerful, intuitive tools for creators and professionals.", product: "POD and STUDIO: autonomous, automated 3D scanning combining simplicity, precision, and innovation.", sector: "ROBOTICS / AI" },
+      { name: "OOTENTIK", website: "ootentik.net", description: "Protects brands from counterfeiting with secure NFC chips. Integrates Digital Product Passport required in Europe from 2027.", product: "NFC chips with customizable app for instant authenticity verification, traceability, and engagement.", sector: "CYBERSECURITY" },
+      { name: "Optivalue.ai", website: "optivalue.ai", description: "Helps enterprises win more deals and audits faster. Transforms compliance into competitive advantage.", product: "Proven answers in minutes—sourced, multilingual & secure. Win faster, reduce risks.", sector: "CYBERSECURITY" },
+      { name: "Piano LED", website: "pianoledshop.com", description: "Revolutionizing piano learning through technology. Makes piano playing intuitive and accessible to everyone.", product: "Piano LED Plus: LED lights guide each key in real time—learn and play from the very first note.", sector: "ENTERTAINMENT" },
+      { name: "RMAN SYNC", website: "rman-sync.com", description: "Deeptech-certified AI startup optimizing supply chain through demand forecasting since 2019.", product: "Proprietary AI forecasting sales and recommending supplier orders with 96% reliability rate.", sector: "INDUSTRY 4.0" },
+      { name: "SAS LIZIA", website: "lizia.fr", description: "Fast-growing French brand with clever 3-in-1 reading tool. Designed and made in France.", product: "Lizia: page holder, warm LED light, and bookmark. USB-C rechargeable, ultra-light, gift-ready.", sector: "CONSUMER TECH / LIFESTYLE" },
+      { name: "SEANAT", website: "seanat.com", description: "SaaS platforms solving email and enterprise memory challenges with patented architecture.", product: "IRISTIA™ turns emails into structured digital memory—the backbone of Industry 4.0 knowledge management.", sector: "INDUSTRY 4.0" },
+      { name: "SeeHaptic", website: "arthafrance.com", description: "Patented sensory substitution technology empowering blind and visually impaired people worldwide.", product: "Smart camera, AI and haptic belt translating environment into intuitive tactile signals in real time.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "SKINMED", website: "skinmed.fr", description: "French HealthTech providing instant, AI-powered dermatological diagnostics anywhere.", product: "AI platform analyzing dermoscopic images in seconds, identifying nine lesion types with medical accuracy.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "SKWHEEL", website: "skwheel.com", description: "French start-up innovating at the crossroads of sport, leisure, and mobility with premium solutions.", product: "Skwheel One: world's first electric ski on wheels. Thrill of skiing year-round on any surface.", sector: "MOBILITY" },
+      { name: "Skyld", website: "skyld.io", description: "Protects AI models from extraction and theft. Founded by PhD in cryptography, backed by Station F and UC Berkeley.", product: "Protects on-device AI models against extraction with licensing control—expiration, usage limits, access management.", sector: "CYBERSECURITY" },
+      { name: "Skyted", website: "skyted.io", description: "Silent, secure voice communications for hybrid workers. Supported by Airbus, ONERA, and ESA.", product: "Skyted 320 headset: confidential, silent calls in noisy environments with SoundBubble app.", sector: "TELECOM" },
+      { name: "SOLVER AI", website: "solver-ai.net", description: "Led by female engineer and pharmacist. 2 patents, app-connected technology, Florida subsidiary.", product: "Invisible mini-technology magnetized to phone. 1 click, 1 second, anywhere—universal reflex assistant.", sector: "CONSUMER TECH / LIFESTYLE" },
+      { name: "Sonaid", website: "sonaid.ai", description: "INRIA deeptech spin-off: on-device sound detection technology for health and safety.", product: "Sound Detection as a Service (SDaaS) identifying distress, pain, falls, aggression, and emergency alerts.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "Sternboard by SQ Motors", website: "sq-motors.com", description: "Fully waterproof, 3-wheeled all-terrain electric skateboard with detachable battery and track system.", product: "Sternboard excels on sand, snow, and mountains. Making outdoor sports accessible to everyone.", sector: "MOBILITY" },
+      { name: "StudAgent", website: "mystudagent.com", description: "Co-founded by students. AI Agents easing exam prep, internship searches, and group projects.", product: "System of specialized agents in synergy—revision, exams, planning, group work, internships.", sector: "EDTECH" },
+      { name: "TWAKE.AI", website: "twake.ai", description: "Sovereign, open-source Digital Workplace with Generative AI. European alternative to Microsoft 365.", product: "Unifies messaging, documents, and automation for collaboration, privacy, and efficiency.", sector: "ROBOTICS / AI" },
+      { name: "Vaonis", website: "vaonis.com", description: "French smart telescopes combining optics, electronics, and software. Astronomy accessible to everyone.", product: "Hyperia: most advanced smart observatory with professional-grade Canon optics for extreme deep-sky imaging.", sector: "CONSUMER TECH / LIFESTYLE" },
+      { name: "VISIOON", website: "visioon.org", description: "AI-powered interactive solutions for immersive biodiversity education in aquariums, zoos, and museums.", product: "Pictum identifies marine species in real time while collecting behavioral data for conservation.", sector: "ENTERTAINMENT" },
+      { name: "VSTech Sensors", website: "vstech-sensors.com", description: "French startup pioneering organic photodiode technology for smart rings and health tracking.", product: "World's thinnest smart ring with organic photodiodes for discreet, continuous health tracking.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "WHEELMOVE", website: "wheelmove.eu", description: "Empowers people with reduced mobility. Commercial launch mid-2026 in Europe, then North America.", product: "Ze One transforms manual wheelchairs into all-road with electrical assistance, fully independently.", sector: "HEALTH TECH / WELLNESS" },
+      { name: "Wheere", website: "wheere.com", description: "Solving what GPS couldn't: accurate indoor tracking. Patented VHF technology penetrating 50m of concrete.", product: "Indoor geolocation with metric-level accuracy via ground antennas today, LEO satellites by 2030.", sector: "INDUSTRY 4.0" },
+      { name: "Y-Brush", website: "y-brush.com", description: "Connected oral-care solutions cleaning teeth in 20 seconds with advanced health sensors.", product: "Smart toothbrush analyzing breath in real time to detect oral or systemic health issues.", sector: "CONSUMER TECH / LIFESTYLE" },
+      { name: "YellowScan", website: "yellowscan.com", description: "Global leader in UAV LiDAR solutions since 2012. Trusted in 64+ countries for surveying and monitoring.", product: "Navigator: first UAV bathymetric LiDAR for high-resolution shallow water mapping.", sector: "ROBOTICS / AI" },
+      { name: "YNEURO", website: "yneuro.com", description: "World's first neural authentication technology. Replaces passwords with unique neural signatures.", product: "Neuro ID® verifies identity through everyday wearables—seamless, unreplicable, private by design.", sector: "CYBERSECURITY" },
+      { name: "Yomy", website: "yomy.care", description: "First intelligent automatic feeder for cats, designed with veterinarians for feline health.", product: "Smart feeder dispensing pâté and kibbles based on each cat's rhythm. Prevents obesity and urinary issues.", sector: "SMART HOME / SMART CITY" }
+    ];
+
+    const sectorConfig = {
+      "HEALTH TECH / WELLNESS": { class: "sector-health", icon: "🏥" },
+      "ROBOTICS / AI": { class: "sector-ai", icon: "🤖" },
+      "GREEN TECH": { class: "sector-green", icon: "🌱" },
+      "CYBERSECURITY": { class: "sector-cyber", icon: "🔐" },
+      "CONSUMER TECH / LIFESTYLE": { class: "sector-consumer", icon: "📱" },
+      "SMART HOME / SMART CITY": { class: "sector-smart", icon: "🏠" },
+      "ENTERTAINMENT": { class: "sector-entertainment", icon: "🎬" },
+      "INDUSTRY 4.0": { class: "sector-industry", icon: "⚙️" },
+      "MOBILITY": { class: "sector-mobility", icon: "🚀" },
+      "FINTECH": { class: "sector-fintech", icon: "💳" },
+      "AI Business Solution": { class: "sector-aibiz", icon: "🧠" },
+      "EDTECH": { class: "sector-edtech", icon: "📚" },
+      "RETAIL TECH": { class: "sector-retail", icon: "🛒" },
+      "SPORT TECH": { class: "sector-sport", icon: "⚽" },
+      "TELECOM": { class: "sector-telecom", icon: "📡" },
+      "GAMING": { class: "sector-gaming", icon: "🎮" }
+    };
+
+    // Get unique sectors with counts
+    const sectorCounts = {};
+    startups.forEach(s => {
+      sectorCounts[s.sector] = (sectorCounts[s.sector] || 0) + 1;
+    });
+    const sectors = Object.keys(sectorCounts).sort((a, b) => sectorCounts[b] - sectorCounts[a]);
+
+    // Populate sector dropdown
+    const sectorSelect = document.getElementById('sector-filter');
+    sectors.forEach(sector => {
+      const opt = document.createElement('option');
+      opt.value = sector;
+      opt.textContent = `${sector} (${sectorCounts[sector]})`;
+      sectorSelect.appendChild(opt);
+    });
+
+    // Populate sector pills
+    const pillsContainer = document.getElementById('sector-pills');
+    const topSectors = ['All', ...sectors.slice(0, 7)];
+    topSectors.forEach(sector => {
+      const pill = document.createElement('button');
+      pill.className = 'sector-pill' + (sector === 'All' ? ' active' : '');
+      pill.dataset.sector = sector;
+      const config = sectorConfig[sector] || { icon: '💡' };
+      pill.innerHTML = `<span>${config.icon || '📊'}</span>${sector === 'All' ? 'All' : sector.split(' / ')[0]}`;
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.sector-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        sectorSelect.value = sector;
+        renderStartups();
+      });
+      pillsContainer.appendChild(pill);
+    });
+
+    let expandedCards = new Set();
+
+    function renderStartups() {
+      const search = document.getElementById('search').value.toLowerCase();
+      const sector = document.getElementById('sector-filter').value;
+      
+      const filtered = startups.filter(s => {
+        const matchSearch = !search || 
+          s.name.toLowerCase().includes(search) ||
+          s.description.toLowerCase().includes(search) ||
+          s.product.toLowerCase().includes(search);
+        const matchSector = sector === 'All' || s.sector === sector;
+        return matchSearch && matchSector;
+      });
+
+      const grid = document.getElementById('startup-grid');
+      
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column: 1/-1">
+            <div class="empty-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <h3 class="empty-title">No startups found</h3>
+            <p class="empty-text">Try adjusting your search or filters</p>
+          </div>
+        `;
+      } else {
+        grid.innerHTML = filtered.map((s, i) => {
+          const config = sectorConfig[s.sector] || { class: '', icon: '💡' };
+          const isExpanded = expandedCards.has(s.name);
+          return `
+            <article class="startup-card">
+              <div class="card-content">
+                <div class="card-header">
+                  <div class="card-title-group">
+                    <h2 class="card-title">${s.name}</h2>
+                    <p class="card-website">${s.website}</p>
+                  </div>
+                  <a href="https://${s.website}" target="_blank" rel="noopener" class="card-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+                <span class="sector-badge ${config.class}">${config.icon} ${s.sector}</span>
+                <p class="card-description ${isExpanded ? 'expanded' : ''}">${s.description}</p>
+                ${isExpanded ? `
+                  <div class="card-product">
+                    <p class="product-label">Product / Innovation</p>
+                    <p class="product-text">${s.product}</p>
+                  </div>
+                ` : ''}
+              </div>
+              <button class="card-toggle ${isExpanded ? 'expanded' : ''}" data-name="${s.name}">
+                ${isExpanded ? 'Show less' : 'View product'}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+            </article>
+          `;
+        }).join('');
+      }
+
+      // Update results info
+      const info = document.getElementById('results-info');
+      let infoText = `Showing <strong>${filtered.length}</strong> startup${filtered.length !== 1 ? 's' : ''}`;
+      if (sector !== 'All') infoText += ` in <span class="highlight">${sector}</span>`;
+      if (search) infoText += ` matching "<span class="highlight">${search}</span>"`;
+      info.innerHTML = infoText;
+      
+      document.getElementById('showing-count').textContent = filtered.length;
+
+      // Add toggle listeners
+      document.querySelectorAll('.card-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const name = btn.dataset.name;
+          if (expandedCards.has(name)) {
+            expandedCards.delete(name);
+          } else {
+            expandedCards.add(name);
+          }
+          renderStartups();
+        });
+      });
+    }
+
+    // Event listeners
+    document.getElementById('search').addEventListener('input', (e) => {
+      document.getElementById('clear-search').classList.toggle('visible', e.target.value.length > 0);
+      renderStartups();
+    });
+
+    document.getElementById('clear-search').addEventListener('click', () => {
+      document.getElementById('search').value = '';
+      document.getElementById('clear-search').classList.remove('visible');
+      renderStartups();
+    });
+
+    document.getElementById('sector-filter').addEventListener('change', (e) => {
+      document.querySelectorAll('.sector-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.sector === e.target.value);
+      });
+      renderStartups();
+    });
+
+    // Initial render
+    renderStartups();
+    </script>
+</body>
+</html>
