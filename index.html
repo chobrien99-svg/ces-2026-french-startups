@@ -667,24 +667,38 @@
       pillsContainer.appendChild(pill);
     });
 
+    // Use a Set with indices instead of names to avoid special character issues
     let expandedCards = new Set();
+
+    // Store filtered results globally so we can reference them in click handlers
+    let currentFiltered = [];
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
 
     function renderStartups() {
       const search = document.getElementById('search').value.toLowerCase();
       const sector = document.getElementById('sector-filter').value;
       
-      const filtered = startups.filter(s => {
+      // Filter and store with original indices
+      currentFiltered = [];
+      startups.forEach((s, originalIndex) => {
         const matchSearch = !search || 
           s.name.toLowerCase().includes(search) ||
           s.description.toLowerCase().includes(search) ||
           s.product.toLowerCase().includes(search);
         const matchSector = sector === 'All' || s.sector === sector;
-        return matchSearch && matchSector;
+        if (matchSearch && matchSector) {
+          currentFiltered.push({ ...s, originalIndex });
+        }
       });
 
       const grid = document.getElementById('startup-grid');
       
-      if (filtered.length === 0) {
+      if (currentFiltered.length === 0) {
         grid.innerHTML = `
           <div class="empty-state" style="grid-column: 1/-1">
             <div class="empty-icon">
@@ -695,32 +709,32 @@
           </div>
         `;
       } else {
-        grid.innerHTML = filtered.map((s, i) => {
+        grid.innerHTML = currentFiltered.map((s) => {
           const config = sectorConfig[s.sector] || { class: '', icon: '💡' };
-          const isExpanded = expandedCards.has(s.name);
+          const isExpanded = expandedCards.has(s.originalIndex);
           const websiteUrl = s.website.startsWith('http') ? s.website : 'https://' + s.website;
           return `
             <article class="startup-card">
               <div class="card-content">
                 <div class="card-header">
                   <div class="card-title-group">
-                    <h2 class="card-title">${s.name}</h2>
-                    <p class="card-website">${s.website}</p>
+                    <h2 class="card-title">${escapeHtml(s.name)}</h2>
+                    <p class="card-website">${escapeHtml(s.website)}</p>
                   </div>
-                  <a href="${websiteUrl}" target="_blank" rel="noopener" class="card-link">
+                  <a href="${escapeHtml(websiteUrl)}" target="_blank" rel="noopener" class="card-link">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                   </a>
                 </div>
-                <span class="sector-badge ${config.class}">${config.icon} ${s.sector}</span>
-                <p class="card-description ${isExpanded ? 'expanded' : ''}">${s.description}</p>
+                <span class="sector-badge ${config.class}">${config.icon} ${escapeHtml(s.sector)}</span>
+                <p class="card-description ${isExpanded ? 'expanded' : ''}">${escapeHtml(s.description)}</p>
                 ${isExpanded ? `
                   <div class="card-product">
                     <p class="product-label">Product / Innovation</p>
-                    <p class="product-text">${s.product}</p>
+                    <p class="product-text">${escapeHtml(s.product)}</p>
                   </div>
                 ` : ''}
               </div>
-              <button class="card-toggle ${isExpanded ? 'expanded' : ''}" data-name="${s.name}">
+              <button class="card-toggle ${isExpanded ? 'expanded' : ''}" data-idx="${s.originalIndex}">
                 ${isExpanded ? 'Show less' : 'View product'}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
               </button>
@@ -730,25 +744,27 @@
       }
 
       const info = document.getElementById('results-info');
-      let infoText = `Showing <strong>${filtered.length}</strong> startup${filtered.length !== 1 ? 's' : ''}`;
-      if (sector !== 'All') infoText += ` in <span class="highlight">${sector}</span>`;
-      if (search) infoText += ` matching "<span class="highlight">${search}</span>"`;
+      let infoText = `Showing <strong>${currentFiltered.length}</strong> startup${currentFiltered.length !== 1 ? 's' : ''}`;
+      if (sector !== 'All') infoText += ` in <span class="highlight">${escapeHtml(sector)}</span>`;
+      if (search) infoText += ` matching "<span class="highlight">${escapeHtml(search)}</span>"`;
       info.innerHTML = infoText;
       
-      document.getElementById('showing-count').textContent = filtered.length;
-
-      document.querySelectorAll('.card-toggle').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const name = btn.dataset.name;
-          if (expandedCards.has(name)) {
-            expandedCards.delete(name);
-          } else {
-            expandedCards.add(name);
-          }
-          renderStartups();
-        });
-      });
+      document.getElementById('showing-count').textContent = currentFiltered.length;
     }
+
+    // Use event delegation for toggle buttons - attach once to the grid
+    document.getElementById('startup-grid').addEventListener('click', function(e) {
+      const toggleBtn = e.target.closest('.card-toggle');
+      if (toggleBtn) {
+        const idx = parseInt(toggleBtn.dataset.idx, 10);
+        if (expandedCards.has(idx)) {
+          expandedCards.delete(idx);
+        } else {
+          expandedCards.add(idx);
+        }
+        renderStartups();
+      }
+    });
 
     document.getElementById('search').addEventListener('input', (e) => {
       document.getElementById('clear-search').classList.toggle('visible', e.target.value.length > 0);
