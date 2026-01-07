@@ -410,6 +410,7 @@
         }
         .card-toggle svg {
             transition: transform 0.2s;
+            pointer-events: none;
         }
         .card-toggle.expanded svg {
             transform: rotate(180deg);
@@ -712,19 +713,6 @@
       info.innerHTML = infoText;
       
       document.getElementById('showing-count').textContent = filtered.length;
-
-      // Add toggle listeners
-      document.querySelectorAll('.card-toggle').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const name = btn.dataset.name;
-          if (expandedCards.has(name)) {
-            expandedCards.delete(name);
-          } else {
-            expandedCards.add(name);
-          }
-          renderStartups();
-        });
-      });
     }
 
     // Event listeners
@@ -744,6 +732,21 @@
         p.classList.toggle('active', p.dataset.sector === e.target.value);
       });
       renderStartups();
+    });
+
+    // Use event delegation for card toggle buttons
+    // This single listener handles all present and future toggle buttons
+    document.getElementById('startup-grid').addEventListener('click', (e) => {
+      const toggleBtn = e.target.closest('.card-toggle');
+      if (toggleBtn) {
+        const name = toggleBtn.dataset.name;
+        if (expandedCards.has(name)) {
+          expandedCards.delete(name);
+        } else {
+          expandedCards.add(name);
+        }
+        renderStartups();
+      }
     });
 
     // Initial render
