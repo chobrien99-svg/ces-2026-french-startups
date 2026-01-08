@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CES 2026 French Startups Directory | French Tech Journal</title>
+    <meta name="description" content="Discover 111 innovative French startups exhibiting at CES 2026 in Las Vegas. Search by sector, explore products, and connect with France's tech ecosystem.">
+    <meta property="og:title" content="CES 2026 French Startups Directory">
+    <meta property="og:description" content="111 innovative French startups at CES Las Vegas - Health Tech, AI, Green Tech, Cybersecurity and more.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #111827;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07);
+            --border-subtle: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-violet: #8b5cf6;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #0f172a 50%, #1e1b4b 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .bg-effects {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .bg-effects::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+            filter: blur(60px);
+        }
+        .bg-effects::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            left: -10%;
+            width: 35%;
+            height: 35%;
+            background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
+            filter: blur(60px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(10,15,26,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.25rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 15px rgba(139,92,246,0.3);
+        }
+        
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .brand-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .brand-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #fff, #c7d2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header-stats {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .stat-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .stat-badge.highlight {
+            background: rgba(59,130,246,0.1);
+            border-color: rgba(59,130,246,0.3);
+            color: #93c5fd;
+        }
+        
+        .filters-section {
+            padding: 1.5rem 0;
+        }
+        
+        .search-row {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        .search-wrapper {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 2.75rem 0.875rem 2.75rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .search-input::placeholder { color: var(--text-muted); }
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(59,130,246,0.5);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+        
+        .clear-btn {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 4px;
+            display: none;
+        }
+        .clear-btn.visible { display: block; }
+        .clear-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.1); }
+        
+        .sector-select {
+            padding: 0.875rem 2.5rem 0.875rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            cursor: pointer;
+            min-width: 200px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+        }
+        .sector-select:focus {
+            outline: none;
+            border-color: rgba(59,130,246,0.5);
+        }
+        .sector-select option { background: #1e293b; }
+        
+        .sector-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .sector-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .sector-pill:hover { background: rgba(255,255,255,0.08); }
+        .sector-pill.active {
+            background: rgba(59,130,246,0.15);
+            border-color: rgba(59,130,246,0.4);
+            color: #93c5fd;
+        }
+        
+        .results-info {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .results-info strong { color: var(--text-primary); }
+        .results-info .highlight { color: var(--accent-blue); }
+        
+        .startup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1rem;
+            padding-bottom: 3rem;
+        }
+        
+        @media (max-width: 400px) {
+            .startup-grid { grid-template-columns: 1fr; }
+        }
+        
+        .startup-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .startup-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.4);
+        }
+        
+        .card-content { padding: 1.25rem; }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .card-title-group { flex: 1; min-width: 0; }
+        
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.15rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .card-website {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .card-link {
+            flex-shrink: 0;
+            padding: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .card-link:hover {
+            background: rgba(59,130,246,0.2);
+            color: #93c5fd;
+        }
+        
+        .sector-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .sector-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
+        
+        .card-description {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-description.expanded {
+            -webkit-line-clamp: unset;
+        }
+        
+        .card-product {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+        
+        .product-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-text {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            line-height: 1.55;
+        }
+        
+        .card-toggle {
+            width: 100%;
+            padding: 0.65rem;
+            background: rgba(255,255,255,0.02);
+            border: none;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            transition: all 0.2s;
+        }
+        .card-toggle:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-primary);
+        }
+        .card-toggle svg {
+            transition: transform 0.2s;
+        }
+        .card-toggle.expanded svg {
+            transform: rotate(180deg);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .empty-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+        .empty-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+        .empty-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 1.5rem 0;
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+        }
+        .footer-text {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .footer-link {
+            color: rgba(59,130,246,0.7);
+            text-decoration: none;
+        }
+        .footer-link:hover { color: var(--accent-blue); }
+        
+        .sector-health { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+        .sector-ai { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+        .sector-green { background: rgba(132,204,22,0.15); color: #bef264; border: 1px solid rgba(132,204,22,0.3); }
+        .sector-cyber { background: rgba(244,63,94,0.15); color: #fda4af; border: 1px solid rgba(244,63,94,0.3); }
+        .sector-consumer { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+        .sector-smart { background: rgba(6,182,212,0.15); color: #67e8f9; border: 1px solid rgba(6,182,212,0.3); }
+        .sector-entertainment { background: rgba(236,72,153,0.15); color: #f9a8d4; border: 1px solid rgba(236,72,153,0.3); }
+        .sector-industry { background: rgba(249,115,22,0.15); color: #fdba74; border: 1px solid rgba(249,115,22,0.3); }
+        .sector-mobility { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+        .sector-fintech { background: rgba(234,179,8,0.15); color: #fde047; border: 1px solid rgba(234,179,8,0.3); }
+        .sector-aibiz { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+        .sector-edtech { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.3); }
+        .sector-retail { background: rgba(217,70,239,0.15); color: #e879f9; border: 1px solid rgba(217,70,239,0.3); }
+        .sector-sport { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+        .sector-telecom { background: rgba(14,165,233,0.15); color: #7dd3fc; border: 1px solid rgba(14,165,233,0.3); }
+        .sector-gaming { background: rgba(168,85,247,0.15); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.3); }
+    </style>
+</head>
+<body>
+    <div class="bg-effects"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <div class="brand-icon">✨</div>
+                    <div class="brand-text">
+                        <span class="brand-label">French Tech Journal</span>
+                        <h1 class="brand-title">CES 2026 French Startups</h1>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <span class="stat-badge">🌍 Las Vegas</span>
+                    <span class="stat-badge highlight">👥 <span id="total-count">111</span> startups</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <section class="filters-section">
+                <div class="search-row">
+                    <div class="search-wrapper">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                        <input type="text" class="search-input" id="search" placeholder="Search startups, products, technologies...">
+                        <button class="clear-btn" id="clear-search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                    <select class="sector-select" id="sector-filter">
+                        <option value="All">All Sectors (111)</option>
+                    </select>
+                </div>
+                
+                <div class="sector-pills" id="sector-pills"></div>
+                
+                <p class="results-info" id="results-info">
+                    Showing <strong id="showing-count">111</strong> startups
+                </p>
+            </section>
+            
+            <div class="startup-grid" id="startup-grid"></div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p class="footer-text">Data sourced from Business France • CES 2026 Las Vegas</p>
+            <p class="footer-text" style="margin-top:0.25rem">© 2026 <a href="https://frenchtechjournal.com" class="footer-link">French Tech Journal</a></p>
+        </div>
+    </footer>
+
+    <script>
+    const startups = [
+      { name: "Acquire To Decide (A2D)", website: "a2d.ai", description: "A2D, an 8-year-old innovative software company, turns raw field data into actionable insights. Our AI solution lets project and asset managers monitor infrastructure health, anticipate issues, and make faster, safer, more informed decisions.", product: "A2D offers the market’s only solution combining secure cloud SaaS (less than 24 hours to analyze defects and display them on your structure’s digital twin) and embedded artificial intelligence (Real-time detection of areas of interest from a video stream) for the inspection of infrastructure assets", sectors: ["SMART HOME / SMART CITY", "ROBOTICS / AI"] },
+      { name: "AEQUIL SCIENCE", website: "aequilscience.com", description: "Research Laboratory Specialized in Applied Biophysics", product: "AEQUIL SCIENCE Research laboratory specializing in applied biophysics, developing cutting-edge solutions at the intersection of physics and biology for health and scientific applications.", sectors: ["HEALTH TECH / WELLNESS"] },
+      { name: "AEMOTIONEV4 FRANCE", website: "ae-motion.com", description: "Electric vehicle designer and manufacturer", product: "French electric vehicle designer and manufacturer creating innovative EVs that combine performance, sustainability, and cutting-edge technology for the future of mobility.", sectors: ["MOBILITY", "GREEN TECH"] },
+      { name: "ALGOS", website: "algos-ai.com/en", description: "Algos operates at the intersection of strategic innovation and technical execution, offering a dual expertise as an AI software company and strategic AI consulting firm. This drives the development of the industry's first AI OS ensuring the deployment of relevant, secure, and sovereign AI solutions.", product: "Omnisian is the industry's first AI OS. Serving as the central nervous system for business, it orchestrates specialized AIs to achieve enterprise-grade accuracy, traceability, and sovereignty—a level of performance beyond the reach of any standalone AI like LLMs or AI Apps.", sectors: ["ROBOTICS / AI"] },
+      { name: "ALLERGEN ALERT", website: "allergen-alert.com/accueil", description: "Food allergen detection solution", product: "Food safety solution that detects allergens in food products, helping consumers with allergies make safer choices and enabling food businesses to ensure compliance and protect customers.", sectors: ["HEALTH TECH / WELLNESS"] },
+      { name: "ARTIFEEL", website: "artifeel.com", description: "Design, development, marketing and operation of intelligent alarm and monitoring systems", product: "Designs and develops intelligent alarm and monitoring systems that leverage smart technology to provide enhanced security and real-time surveillance for homes and businesses.", sectors: ["SMART HOME / SMART CITY"] },
+      { name: "ASYGN", website: "asygn.com", description: "Integrated circuit and electronic board designer", product: "Integrated circuit and electronic board designer creating custom semiconductor solutions for demanding applications across defense, automotive, industrial, and IoT markets.", sectors: ["CYBERSECURITY", "AI Business Solution"] },
+      { name: "AUUM", website: "auum.com", description: "AUUM is not an ordinary dishwasher. We are reuse enablers. We develop steam-based cleaning technology used across multiple industries to replace single-use waste. Our flagship machine cleans and dries cups and glasses in 10 seconds, making reuse simple, fast and scalable.", product: "AUUM isn’t a dishwasher, it’s a reuse machine. Our 20-second steam technology cleans and dries cups and glasses with almost no water and no chemicals, enabling workplaces and hospitality venues to shift from single-use waste to scalable, convenient reuse.", sectors: ["GREEN TECH"] },
+      { name: "Avatar Medical", website: "avatarmedical.ai", description: "Avatar Medical, based in Paris and Mountain View, transforms the clinic experience with patient-specific 3D and XR avatars generated instantly from medical scans. Its FDA-cleared and CE-marked software fosters trust, empowers shared decisions, and helps hospitals reduce patient outmigration.", product: "Eonis Vision brings the clinic of the future to life. CT/MRI scans instantly become floating 3D avatars that patients and doctors explore together—no headset needed. By replacing confusion with clarity, Eonis Vision empowers trust, faster consults, and confident shared decisions.", sectors: ["HEALTH TECH / WELLNESS", "ROBOTICS / AI"] },
+      { name: "Baracoda Labs", website: "us.kolibree.com", description: "Baracoda Labs designs connected, eco-responsible technologies that turn daily routines into preventive health opportunities. With 70+ patents, 17 toothbrush models sold in 50 countries, and 3 CES Awards, Baracoda merges AI, behavioral science, and design to promote healthier lives.", product: "Kolibree Kids is an AI-powered hygiene system that turns toothbrushing, handwashing, and face washing into playful guided games. Rooted in WHO and UNICEF science, it helps children build healthy habits while reassuring parents through privacy-first design.", sectors: ["HEALTH TECH / WELLNESS", "ROBOTICS / AI"] },
+      { name: "BIENESIS", website: "bienesis.fr", description: "Designer of the first integrated system for the protection of vines against destructive climatic hazards (frost, hail, diseases and scalding)", product: "Creator of the first integrated protection system for vineyards against climate hazards including frost, hail, disease, and heat damage—safeguarding harvests and wine production.", sectors: ["GREEN TECH", "INDUSTRY 4.0"] },
+      { name: "BYOME LABS", website: "byomelabs.com/lp/tests-analyse-microbiome/", description: "Tests and scientific analysis of skin, vaginal, oral and scalp microbiomes", product: "Scientific testing and analysis platform for skin, vaginal, oral, and scalp microbiomes, enabling personalized health insights and targeted treatments based on microbiome data.", sectors: ["HEALTH TECH / WELLNESS"] },
+      { name: "CLEAR SURGERY", website: "clearsurgery.vision", description: "Innovative mixed reality platform removing the cumbersome screens of the operating rooms and facilitating access to the data and video streams necessary for the operation of patients", product: "Innovative mixed reality platform that eliminates bulky operating room screens, giving surgeons seamless access to critical data and video streams during procedures.", sectors: ["HEALTH TECH / WELLNESS", "ROBOTICS / AI"] },
+      { name: "COLORFOL", website: "colorfol.com", description: "Colorfol is a pan-African platform for discovering, distributing, and monetizing music and cultural content. It connects artists, labels, and audiences through inclusive and innovative digital solutions.", product: "Colorfol is a pan-African music-tech platform integrating streaming, distribution, and mobile payments (including USSD). It innovates by combining AI recommendations, analytics for artists, and monetization solutions tailored to African realities.", sectors: ["ENTERTAINMENT", "FINTECH", "ROBOTICS / AI"] },
+      { name: "DATAVIZX by PRODEVA", website: "datavizx.com", description: "DATAVIZX turns accounting and business data into actionable insights through automated dashboards. Our BI solutions help firms and SMEs make smarter, data-driven decisions with Power BI and Zebra BI technologies.", product: "PRODEVA develops intelligent BI tools that automate accounting data analysis and reporting. Our solution turns financial data into clear, interactive dashboards powered by Power BI, Sage BI, Zebra BI, and AI-driven predictive analytics.", sectors: ["FINTECH"] },
+      { name: "DECQ", website: "decq.com/fr", description: "Web-to-print software solutions and online product customization", product: "Web-to-print software solutions enabling online product customization, helping businesses offer personalized products at scale with streamlined production workflows.", sectors: ["RETAIL TECH"] },
+      { name: "Deglace", website: "deglace.tech/en", description: "Deglace designs modular, AI-powered home appliances built to last. Our first product, Fraction, is the world’s first modular smart vacuum: swappable, upgradeable, and sustainable — engineered to break free from throwaway culture and redefine durability.", product: "Fraction is the world’s first modular smart vacuum. Designed to last 5× longer, it features swappable and upgradeable modules plus AI-driven self-diagnosis. A breakthrough in durability and sustainability, cutting e-waste while delivering top performance.", sectors: ["CONSUMER TECH / LIFESTYLE", "ROBOTICS / AI", "GREEN TECH"] },
+      { name: "DEVANA", website: "devana.ai", description: "Devana is shaping the future of sovereign AI for governments, finance, and critical sectors. Our hybrid AI systems operate from edge to HPC and are also available offline with the Devana AIS Box : an autonomous module combining advanced AI and agentic intelligence for the most demanding missions.", product: "DIWY (Devana is With You): The first sovereign AI-in-the-box. This titanium-sealed hardware runs Devana OS, delivering verifiable, autonomous AI fully offline. It's compliant by design (AI Act, DORA, GDPR), ensuring total independence from the cloud.", sectors: ["CONSUMER TECH / LIFESTYLE", "ROBOTICS / AI"] },
+      { name: "DIGIPAIR", website: "digipair.ai", description: "DIGIPAIR – The First Complete Agentic Suite for Your Company DIGIPAIR transforms the way organizations work with technology. It’s the first sovereign, explainable, and controllable agentic suite, built for enterprises and powered by our open-source agentic engine, DIGIPAIR Community. Our suite includes: 🧠 An Agent Editor – Create and train your ...", product: "DIGIPAIR is the first agentic digital assistant. You all know computers, tablets, and phones, right? An employee spends on average 40% of their time on them. You all know assistants like ChatGPT or Le Chat de Mistral, or even Siri, Alexa, or Google Home. DIGIPAIR is also an assistant, but it is sovereign, explainable, controllable, and can use a...", sectors: ["AI Business Solution"] },
+      { name: "DOLPHIN SEMICONDUCTOR", website: "dolphin-semiconductor.com", description: "IP solution for semiconductors targeting markets such as defense, automotive, industry, personal electronics and IoT", product: "IP solutions provider for semiconductors serving defense, automotive, industrial, consumer electronics, and IoT markets with energy-efficient, high-performance chip designs.", sectors: ["INDUSTRY 4.0", "ROBOTICS / AI"] },
+      { name: "Dracula Technologies", website: "dracula-technologies.com", description: "Dracula Technologies pioneers sustainable energy with LAYER® technology, revolutionizing low-power electronics. Our OPV modules harvest ambient light, eliminating batteries. LAYER®Vault combines energy harvesting and storage, powering smart buildings and asset tracking. Our factory produces 150 million cm² of OPV devices annually.", product: "Dracula Technologies introduces two flagship products: LAYER®, an inkjet-printed photovoltaic module harvesting ambient light for low-power electronics, and LAYER®Vault, combining energy harvesting and storage on a single PET film for unlimited autonomy—a world first for low-power devices.", sectors: ["GREEN TECH"] },
+      { name: "DUKE ANALYTICS", website: "duke-ai.io", description: "The Conversational AI Data Department That Lives in Your Workflow", product: "The Conversational AI Data Department living in your workflow. From scattered data to critical decisions in 3 clicks. Ask naturally where it matters most - get answers that drive action. Because every decision deserves data.", sectors: ["RETAIL TECH", "ROBOTICS / AI"] },
+      { name: "EPSEED", website: "epseed.com", description: "EPSEED is a French company developing secure, sovereign and autonomous environments for hybrid work and education. Our solutions help companies and schools deploy isolated, high-performance digital spaces—on any device, anywhere.", product: "SEED is a small box that transforms any computer into a secure and unified workspace and learning environment. It enables the deployment of isolated, controlled operating systems—ideal for hybrid work, BYOD setups, and trusted, standardised environments in schools.", sectors: ["CYBERSECURITY"] },
+      { name: "facildata", website: "facildata.com", description: "Facildata: The AI that gives buildings a voice. It understands your data, predicts failures, and optimizes every intervention, the future of maintenance is already here.", product: "Smart QR codes give instant access to asset data in one scan. An AI agent supports facility & property managers for all technical requests — faster reporting, fewer site visits, better tracking, and a quick ROI through smarter maintenance.", sectors: ["SMART HOME / SMART CITY", "ROBOTICS / AI"] },
+      { name: "FEST TECHNOLOGY", website: "festapp.io", description: "Web, mobile and AI technology solutions for events and festivals", product: "Web, mobile, and AI-powered technology solutions designed specifically for events and festivals—streamlining operations, enhancing attendee experiences, and boosting engagement.", sectors: ["AI Business Solution", "ENTERTAINMENT"] },
+      { name: "Freecovery", website: "freecoveryshop.com", description: "Freecovery is rewriting the rules of muscle recovery. No wires. No waiting rooms. No boring routines. With our patent-pending Click & Freeze™ tech and game-ready Freepad, we deliver instant cryo you can use anywhere. Because performance never hits pause.", product: "Meet Freepad: the first portable cryo system powered by Click & Freeze™. No wires. No prep. Just instant cold at the push of a cap. Clinically proven. Athlete approved. 15 minutes is all it takes to recover and get back in the game.", sectors: ["SPORT TECH", "HEALTH TECH / WELLNESS"] },
+      { name: "GOLANA COMPUTING", website: "golana.fr/about", description: "Industrial equipment monitoring solution", product: "Industrial equipment monitoring solution using advanced sensors and analytics to predict failures, optimize maintenance schedules, and maximize operational efficiency.", sectors: ["INDUSTRY 4.0"] },
+      { name: "H&B MATERIALS", website: "hbmaterials.fr", description: "Alternative biobased formulation to PFAS for the textile and sustainable packaging industry", product: "Develops bio-based alternatives to PFAS chemicals for textile and sustainable packaging industries—eliminating forever chemicals while maintaining high performance.", sectors: ["GREEN TECH", "INDUSTRY 4.0"] },
+      { name: "HANDILAB", website: "handilab.com/home.html", description: "Handilab is the first innovation accelerator dedicated to disability and loss of autonomy. Located in the heart of Grand Paris, this Hub of 13,000 m2 is a unique ecosystem that brings together companies, startups, training centers, laboratories, research, artists, athletes, and associations.", product: "Handilab gets ability to spark spontaneous, high-value collaborations that do not occur elsewhere. it is a dynamic ecosystem where diverse actors meet and build real-world solutions. By bringing together startups, companies, research institutions, Handilab fosters interdisciplinary collaboration.", sectors: ["HEALTH TECH / WELLNESS"] },
+      { name: "HKN CORPORATION", website: "hkn-corporation.com", description: "Online ticketing service (data AI, blockchain)", product: "Online ticketing platform powered by AI and blockchain technology, providing secure, data-driven solutions for event organizers and seamless experiences for attendees.", sectors: ["ENTERTAINMENT", "FINTECH", "AI Business Solution"] },
+      { name: "HOPE VALLEY AI", website: "hopevalley.ai", description: "We build an integrated fourth-generation AI-based risk screening platform for smart digital oncology. As Gen-IV AI designers and risk engineers, we are building the first smart modular cancer digital clinic for prevention, risk prediction and early weak signals detection, years in advance.", product: "By turning complex raw data, multimodal imaging, and multiphysics signals into predictive weak signals detected at the earliest stages, HOPE VALLEY AI enables patients, clinicians, and researchers to anticipate and predict, with trustworthy AI, cancer risk and rare events years in advance.", sectors: ["HEALTH TECH / WELLNESS", "ROBOTICS / AI"] },
+      { name: "ID4US", website: "id4us.fr", description: "Research, design and industrialization of cutting-edge biometric technologies integrating state-of-the-art sensors", product: "Designs and industrializes cutting-edge biometric technologies with state-of-the-art sensors for secure identity verification across government, enterprise, and consumer applications", sectors: ["CYBERSECURITY", "HEALTH TECH / WELLNESS"] },
+      { name: "IMATAG", website: "imatag.com", description: "IMATAG is a French pioneer in digital watermarking technology, founded in 2015. We specialize in protecting and authenticating visual content through invisible watermarks. Our patented solutions serve press agencies, brands, and enterprises worldwide.", product: "IMATAG Authenticity embeds invisible, tamper-proof watermarks at pixel level, from camera hardware to post-production. Unlike metadata, our watermarks survive compression and AI manipulation, enabling instant authentication of real content.", sectors: ["CYBERSECURITY", "ROBOTICS / AI"] },
+      { name: "InsideQuest", website: "insidequest.game", description: "Inside Quest is a revolutionary SaaS platform that gamifies business processes through quests and mini-games, boosting engagement, motivation, and productivity while integrating seamlessly with existing systems for a smooth and data-driven experience.", product: "Inside Quest transforms workflows into game-like missions with quests, mini-games, and rewards. Its AI-driven personalization boosts engagement, productivity, and performance while integrating seamlessly with existing tools", sectors: ["GAMING", "AI Business Solution", "INDUSTRY 4.0"] },
+      { name: "IoTIZE", website: "iotize.com", description: "Design and manufacture of equipment connection solutions to the cloud, mobile application generation (IoT)", product: "Designs and manufactures IoT connectivity solutions that connect equipment to the cloud, with automatic mobile app generation for seamless device management and monitoring.", sectors: ["SMART HOME / SMART CITY", "INDUSTRY 4.0"] },
+      { name: "KERQUEST", website: "kerquest.com", description: "Development of object recognition solutions revolutionizing consumer/product interaction", product: "Object recognition solutions revolutionizing how consumers interact with products—using AI-powered visual identification for retail, inventory, and consumer engagement applications.", sectors: ["RETAIL TECH", "ROBOTICS / AI"] },
+      { name: "LEXILENS by ABEYE", website: "lexilens.com", description: "Abeye is a neuroscience deeptech focusing on the neurovisual system. Backed by award-winning science, our products instantaneously improve reading comfort for people with reading challenges (CES award 2020). Abeye exhibits Lexilens® screen, a PC monitor embedding the same technology.", product: "Lexilens® Screen is a PC monitor designed to improve the neurovisual function of the reader and enhance the reading experience. Backed by latest academic neuroscience discovery, it modifies light, so it eases brain processing and improve reading comfort and comprehension.", sectors: ["HEALTH TECH / WELLNESS", "EDTECH"] },
+      { name: "LILI FOR LIFE", website: "liliforlife.com/en", description: "Since 2020, Lili for Life has been aiming to change the lives of dyslexic people (8% of the world's population). Resulting from scientific research, LILI technology facilitates reading, comprehension and reduces fatigue. The LILI lamp accompanies children and the LILI screen is intended for adults.", product: "Lili for Life launches its brand new LILI display, it incorporates a unique patented strobe light technology. It provides reading comfort, facilitates comprehension and reduces fatigue for dyslexic persons. A global innovation that reduces inequalities from learning and throughout adult life.", sectors: ["HEALTH TECH / WELLNESS", "EDTECH"] },
+      { name: "Linxens", website: "linxens.com", description: "Linxens designs and manufactures solutions based on electronic components for connecting objects. Applications range from payments (cards) to tracking and identification (RFID and data platform) and connected healthcare (stick-to-skin wearables, biosensors). Our promise: opening the way to a better life with solutions that make life easier.", product: "Reusable Track & Sign label for high-value goods (money, medical tests, legal documents...). Solar-powered, NFC-secured, and reusable. Couriers interact with the letter via their own cell phone and view real-time information displayed on the screen. The label features a new signature area sensor.", sectors: ["SMART HOME / SMART CITY"] },
+      { name: "LIVE VENDOR SAS", website: "live-vendor.com", description: "The redesigned online customer experience through instant video interactions between visitors and sales teams", product: "Transforms online shopping through instant video interactions between website visitors and sales teams, bringing the in-store experience to e-commerce with live engagement.", sectors: ["RETAIL TECH"] },
+      { name: "Luchrome", website: "luchrome.com", description: "Luchrome is pioneering a new generation of electronic display technology for connected objects. Our ultra-low-power reflective displays provide vivid readability in all lighting conditions making them ideal for wearables, smart home devices & industrial interfaces.", product: "Luchrome is a game changer for the electronic industry, it is the first fully printed, metal-free display using just carbon-based compounds. It requires no backlight, uses 10x less energy & drastically simplifies the electronics. This means fewer parts, lower impact & end-of-life recyclability.", sectors: ["INDUSTRY 4.0"] },
+      { name: "LULOCODE", website: "lulocode.fr", description: "Development of innovative educational solutions, including educational toys without screens", product: "Develops innovative screen-free educational toys that make learning engaging and interactive for children, combining physical play with educational outcomes.", sectors: ["EDTECH"] },
+      { name: "MAILVISTA by TEAMWAY", website: "mailvista.ai", description: "Mailvista is an innovated solution developped by TEAMWAY Company. MailVista is an Intelligent Inbox Solution. It's combining advanced AI and eco-conscious design. It summarizes, prioritizes, and categorizes emails for personalized and sustainable experience. Email reimagined, simple and powerful.", product: "Instant access to important emails and pending responses Intelligent time planning with automatic task prioritization Personalized recommendation scoring Automatic summaries Measurable environmental impact Integrated CO2 counter Intelligent cloud sharing Carbon footprint donation to environmental NGOs", sectors: ["AI Business Solution"] },
+      { name: "MEERAI.IO", website: "meerai.io", description: "New marketplace model, designed to automate and streamline buyback and resale processes", product: "AI-powered marketplace platform automating buyback and resale processes, helping businesses and consumers participate in the circular economy with streamlined transactions.", sectors: ["RETAIL TECH"] },
+      { name: "MIMO DETECT", website: "mimodetect.com", description: "Manufacture of buried network follower ground radars", product: "Manufactures ground-penetrating radar systems for detecting and mapping buried utility networks, enabling safer excavation and infrastructure planning.", sectors: ["ROBOTICS / AI", "INDUSTRY 4.0"] },
+      { name: "MountAIn", website: "mountainedge.ai", description: "Design of autonomous vision-based Edge AI solutions combining intelligent sensors, direct-to-device satellite connectivity and middleware", product: "Autonomous Edge AI solutions combining intelligent vision sensors, direct-to-device satellite connectivity, and middleware for remote monitoring in challenging environments.", sectors: ["ROBOTICS / AI"] },
+      { name: "MP GEOTEX", website: "mpgeotex.com", description: "Design, development and industrialization of innovative solutions to reduce the environmental impact of construction activities", product: "Designs and industrializes innovative geotextile solutions that reduce the environmental impact of construction activities while maintaining structural performance.", sectors: ["GREEN TECH", "INDUSTRY 4.0"] },
+      { name: "Mr Suricate", website: "mrsuricate.com", description: "Mr Suricate is a French no-code testing platform for web, mobile, and API automation, reproducing real user journeys to detect bugs in real time. Plug & Play and scalable, it ensures continuous quality and reduces up to 40% of production bugs.", product: "Suricate.ai is our new product the AI execution engine that transforms decisions into real actions. A no-code interface empowering businesses to automate, test, and control any process across web, mobile, and API — safely, intelligently, and at scale.", sectors: ["ROBOTICS / AI"] },
+      { name: "NEOIA", website: "neoia.net", description: "NEOIA is a technology company with a mission: to revolutionize photovoltaic cleaning. A global market with enormous potential.", product: "Innovation in solar panel cleaning - An autonomous photovoltaic cleaning robot that uses dew to maintain the performance of the power plant. Completely autonomous, NEOIA will make you forget about the problems of dirt buildup on your solar panels. A unique solution, patented and developed over three years of R&D.", sectors: ["ROBOTICS / AI"] },
+      { name: "NOVUM TECH", website: "novum-tech.fr", description: "Equipment manufacturer for electric vehicles and machinery, manufacturing battery packs and power packs", product: "Equipment manufacturer specializing in battery packs and power solutions for electric vehicles and machinery, enabling the transition to electric-powered transportation and industry.", sectors: ["MOBILITY"] },
+      { name: "O GROUP - SAS DBI Groupe", website: "groupe-o.com", description: "Groupe O develops integrated, nature-inspired water technologies: phyto-filtration, bio-filtration, and Infinit’O™, the first home water-autonomy system. Our mission: regenerate every drop, combining science, innovation, and sustainability.", product: "Infinit’O™ is the first end-to-end home water-autonomy system: it captures rain, stores, regenerates without chemicals, reuses water 10+ times, then recharges aquifers. Patented, app-connected, retrofit-ready—built for resilient and sustainable living.", sectors: ["GREEN TECH"] },
+      { name: "ONEEX", website: "oneex.fr/fr", description: "AI Analysis Solution for Identity Documents", product: "AI-powered identity document analysis solution providing instant verification and fraud detection for secure onboarding, compliance, and identity management.", sectors: ["AI Business Solution", "CYBERSECURITY", "ROBOTICS / AI"] },
+      { name: "ONIZIO", website: "onizio.com", description: "ONIZIO makes 3D scanning optimized and simple. Our mission: democratize 3D scan with powerful, intuitive tools for creators, professionals, educators, and enthusiasts, while building an international community of innovation.", product: "ONIZIO develops autonomous and automated 3D scanning solutions. With POD and STUDIO, the brand democratizes 3D SCAN by combining simplicity, precision, and innovation for creators, professionals, and enthusiasts.", sectors: ["ROBOTICS / AI"] },
+      { name: "ONYL ROCKS / VIGIDOMAN", website: "vigidomaine.fr", description: "Cyber and intellectual property solution that detects attackers and security vulnerabilities through 360° surveillance.", product: "Cyber and intellectual property protection platform offering 360° surveillance to detect attackers, security vulnerabilities, and IP threats before they cause damage.", sectors: ["CYBERSECURITY"] },
+      { name: "OOTENTIK", website: "ootentik.net", description: "Ootentik protects brands from counterfeiting with secure NFC chips and a mobile app. Our solution integrates the Digital Product Passport, required in Europe from 2027, ensuring authenticity, traceability, and stronger customer engagement.", product: "Ootentik secures products with NFC chips linked to a customizable app. Consumers instantly verify authenticity, while brands gain traceability, engagement tools, and compliance with the Digital Product Passport required in Europe from 2027.", sectors: ["CYBERSECURITY"] },
+      { name: "Optivalue.ai", website: "Optivalue.ai", description: "Optivalue.ai helps enterprises win more deals and audits faster. With unlimited projects and instant ROI, our AI transforms compliance from a cost center into a competitive advantage. Respond. Prove. Progress.", product: "Stop wasting days on RFPs & audits. OptiValue.ai gives you proven answers in minutes — sourced, multilingual & secure. Win faster, reduce risks, and turn compliance into a growth driver. Respond. Prove. Progress.", sectors: ["CYBERSECURITY", "ROBOTICS / AI"] },
+      { name: "ORIOMA", website: "orioma.com", description: "Design of autonomous IoT objects", product: "Designs autonomous IoT devices with integrated intelligence, enabling standalone smart solutions that operate independently for remote and distributed applications.", sectors: ["SMART HOME / SMART CITY"] },
+      { name: "PEARFS", website: "pairfs.com", description: "Marketing of solutions (ZoneX) to measure the functional capabilities of athletes by analysis of breathing gases during an effort test", product: "ZoneX solution measuring athletes' functional capabilities through breathing gas analysis during effort tests, providing precise performance data for training optimization.", sectors: ["SPORT TECH"] },
+      { name: "Piano LED", website: "pianoledshop.com", description: "Piano LED is a startup revolutionizing piano learning through technology. Its flagship product, Piano LED Plus, turns any digital keyboard into a smart, interactive instrument. By combining light, music, and innovation, Piano LED makes piano playing intuitive, engaging, and accessible to everyone.", product: "Piano LED Plus transforms any digital keyboard into a smart, interactive instrument. Its LED lights guide each key in real time, allowing anyone to learn and play from the very first note — no prior experience required. A fun, motivating, and personalized way to discover piano.", sectors: ["EDTECH", "CONSUMER TECH / LIFESTYLE"] },
+      { name: "RECONCEPT", website: "reconcept.fr", description: "Regeneration capsules (physiological, well-being, mental health, neurodegenerative) and care", product: "Regeneration capsules delivering physiological recovery, mental wellness, and neurodegenerative care through immersive, technology-enhanced therapeutic experiences.", sectors: ["HEALTH TECH / WELLNESS"] },
+      { name: "RMAN SYNC", website: "rman-sync.com", description: "Founded in 2019, RMAN Sync is a Deeptech-certified start-up specializing in AI. We develop AI solutions that decarbonizes and optimizes supply chain. Based on demand forecasting, our customers anticipate demand, improve their results, reduce environmental impact with a business-oriented solution.", product: "Our proprietary AI enables any company to accurately forecast sales by taking internal and external factors into account. Based on these forecasts, our AI then recommends supplier orders to ensure the right order is placed at the right time and under the best conditions. All this with a 96% reliability rate.", sectors: ["INDUSTRY 4.0", "ROBOTICS / AI", "GREEN TECH"] },
+      { name: "SAS LIZIA", website: "lizia.fr", description: "Lizia is the fast-growing French brand behind a clever 3-in-1 reading tool: page holder, warm LED light, and bookmark. Designed and made in France, it lets you read comfortably with one hand, anywhere. Readers love its sleek build and gift-ready design—smart, simple, unforgettable.", product: "Lizia is a 3-in-1 reading accessory: page holder, warm LED light, and bookmark. Made in France, it enables comfy, one-handed reading with soft, glare-free light and keeps pages open. USB-C rechargeable, ultra-light, durable, and gift-ready, it slips into any bag and fits most books.", sectors: ["CONSUMER TECH / LIFESTYLE"] },
+      { name: "SEANAT", website: "seanat.com", description: "Founded in 2022 by former corporate executives, SEANAT designs SaaS platforms to solve email and enterprise memory challenges. With its patented architecture and focus on compliance and scalability, SEANAT empowers businesses to transform information into usable knowledge.", product: "IRISTIA™ by SEANAT, a patented SaaS, revolutionizes the mailbox by turning emails and attachments into structured digital memory. Unlike messaging tools, IRISTIA provides the digital information backbone of Industry 4.0, scalable for knowledge management, AI, and integration into third-party suites.", sectors: ["INDUSTRY 4.0", "ROBOTICS / AI"] },
+      { name: "SeeHaptic", website: "arthafrance.com/fr", description: "SeeHaptic pioneers patented sensory substitution technology to empower blind and visually impaired people worldwide. By merging AI, haptics, and human-centered design, we turn scientific excellence into inclusive innovation with strong social impact.", product: "Our device combines a smart camera, AI and a haptic belt to translate the environment into intuitive tactile signals in real time. This breakthrough innovation offers blind and visually impaired people new spatial awareness and freedom of movement.", sectors: ["HEALTH TECH / WELLNESS", "ROBOTICS / AI"] },
+      { name: "SKINMED", website: "skinmed.fr", description: "SkinMed is a French HealthTech company providing instant, AI-powered dermatological diagnostics. Our secure, portable platform helps healthcare professionals deliver faster triage, smarter referrals, and earlier skin care anywhere.", product: "SkinMed’s AI-powered tele-expertise platform analyzes dermoscopic images in seconds, identifying nine lesion types with medical accuracy. It connects healthcare providers and dermatologists for faster, smarter, and more accessible skin diagnostics.", sectors: ["HEALTH TECH / WELLNESS", "ROBOTICS / AI"] },
+      { name: "SKWHEEL", website: "skwheel.com", description: "Skwheel is a French start-up innovating at the crossroads of sport, leisure, and mobility.The company’s mission is to reinvent the sensations of gliding while developing premium, sustainable, and accessible mobility solutions. From the very beginning, Skwheel has pursued a clear vision: to offer a unique experience that combines fun, sport, and ...", product: "The Skwheel One is the world’s first electric ski on wheels. Designed to recreate the thrill of skiing all year round, it appeals both to sports and leisure enthusiasts and to urban users seeking a fun, premium mobility alternative. Its greatest strength lies in its versatility. Thanks to its robust, patented design, the Skwheel One can be used ...", sectors: ["MOBILITY", "CONSUMER TECH / LIFESTYLE", "GREEN TECH"] },
+      { name: "Skyld", website: "skyld.io", description: "At Skyld, we protect your AI models from extraction, copy and theft, when they are deployed on-device or on-premise. We enable monetization with robust licensing that prevents unauthorized reuse. Founded by a PhD in cryptography, backed by Station F and UC Berkeley, we're building the future of AI security.", product: "Our solution protects on-device and on-premise AI models against extraction (reverse-engineering). Skyld secures your intellectual property and enables AI monetization through licensing control, including expiration dates, usage limits, and access management.", sectors: ["CYBERSECURITY", "ROBOTICS / AI"] },
+      { name: "Skyted", website: "skyted.io", description: "Supported by Airbus Développement, the ONERA and the ESA, Skyted develops innovative solutions enabling silent, secure, and confidential voice communications for hybrid workers and professionals. We design headsets that enable private calls in trains, planes, and open offices.", product: "The Skyted 320 headset enables confidential, silent calls in noisy environments like trains, planes, or open spaces. Powered by our SoundBubble app, it ensures total privacy anywhere.", sectors: ["TELECOM"] },
+      { name: "SMART BRAIN", website: "smart-brain.fr", description: "Digital solution for management, recruitment", product: "Digital AI solution streamlining HR management and recruitment processes, helping companies find better candidates faster with intelligent matching and automation.", sectors: ["AI Business Solution", "INDUSTRY 4.0"] },
+      { name: "SOLVER AI", website: "solver-ai.net", description: "Solver AI is a SAS led by a passionate female engineer and a pharmacist, with their team, united by one mission: save time for everyone, everywhere. Backed by 2 patents, app-connected technology, a Florida subsidiary, and endless B2B & B2C opportunities.", product: "Solver AI saves time: an invisible mini-technology, magnetized to the back of your phone and customizable via the app. 1 click, 1 second, anywhere. No charging needed, it triggers your actions even locked. A B2B & B2C personal assistant, the universal reflex.", sectors: ["CONSUMER TECH / LIFESTYLE", "ROBOTICS / AI"] },
+      { name: "Sonaid", website: "sonaid.ai", description: "MAKING SENSE OF SOUNDS : On-device sound detection technology for health and safety.", product: "As an INRIA deeptech spin-off, we provide privacy-first, embedded AI that transforms IoT devices into safety guardians. Our Sound Detection as a Service (SDaaS) instantly identifies critical alarming sounds like distress, pain, falls, aggression, and emergency alerts.", sectors: ["HEALTH TECH / WELLNESS"] },
+      { name: "Sternboard by SQ Motors", website: "sq-motors.com", description: "Sternboard by SQ Motors is an innovative French company.", product: "SQ-MOTORS creates the Sternboard, a fully waterproof, 3-wheeled all-terrain electric skateboard with a detachable battery and track system. Built for versatility, it excels on sand, snow, and mountains. We strive to make outdoor sports accessible to everyone, including wheelchair users and beginners.", sectors: ["MOBILITY"] },
+      { name: "StudAgent", website: "mystudagent.com/#agents", description: "Co-founded by two students, StudAgent reinvents the student experience with AI Agents that ease exam prep, internship searches, and group projects. Always supporting, never replacing. It’s the power of AI at the service of education.", product: "StudAgent reinvents AI in education with a system of specialized agents working in synergy. Each agent has a clear role : revision, exams, planning, group work, internships, acting as an orchestrated ecosystem that adapts to each student’s learning journey.", sectors: ["EDTECH", "ROBOTICS / AI"] },
+      { name: "SWIIFT IMAGING", website: "swiiftimaging.com", description: "Development of a haptic robotic arm solution to remotely produce an ultrasound reproducing exactly the gesture of the radiologist", product: "Haptic robotic arm enabling remote ultrasound examinations that precisely replicate the radiologist's movements, bringing expert diagnostics to underserved areas.", sectors: ["ROBOTICS / AI", "HEALTH TECH / WELLNESS"] },
+      { name: "THEYEQ", website: "theyeq.com", description: "Solution for quality control of plastic injection parts", product: "Quality control solution for plastic injection manufacturing, using advanced vision systems to detect defects and ensure consistent part quality at production speed.", sectors: ["INDUSTRY 4.0"] },
+      { name: "TRACKT00", website: "trackt00.com", description: "Solution to automate inventory management", product: "Inventory management automation solution that streamlines stock tracking, reduces manual counts, and provides real-time visibility across warehouses and retail locations.", sectors: ["RETAIL TECH"] },
+      { name: "TWAKE.AI", website: "twake.ai", description: "Twake.ai, powered by LINAGORA, is a sovereign, open-source Digital Workplace enhanced with Generative AI. It unifies chat, mail, docs, and automation to boost collaboration, privacy, and productivity. The true and open source European alternative to Microsoft 365 and Google Workspace.", product: "Twake.AI is a sovereign, open-source Digital Workplace powered by Generative AI. It unifies messaging, documents, and automation to enhance collaboration, data privacy, and efficiency offering a European alternative to Microsoft 365 and Google Workspace.", sectors: ["ROBOTICS / AI"] },
+      { name: "Vaonis", website: "vaonis.com", description: "Vaonis is a French company based in France that designs smart telescopes combining top-tier optics, electronics, and embarked software. Its mission is to make astronomy accessible to everyone through fully autonomous instruments controlled by smartphone.", product: "Hyperia is Vaonis’s most advanced smart observatory, blending cutting-edge automation with professional-grade Canon optics. Designed for extreme deep-sky imaging, it redefines astrophotography with a modular, autonomous, and ultra-premium approach.", sectors: ["CONSUMER TECH / LIFESTYLE"] },
+      { name: "VEINTREE", website: "veintree-sas.odoo.com/fr", description: "Development of a component based on an FPGA that integrates biocryptographic authentication of the venous network and the watermark anchored in the blockchain in real-time video streams and encrypted documents", product: "Biocryptographic authentication using vein pattern recognition on FPGA chips, with blockchain-anchored watermarks for securing video streams and encrypted documents.", sectors: ["CYBERSECURITY"] },
+      { name: "VISIOON", website: "visioon.org", description: "VISIOON SAS develops AI-powered interactive solutions to make biodiversity education immersive and engaging. Our products, Pictum Live and Pictum Outdoor, enhance visitor experiences in aquariums, zoos, museums, and parks while supporting conservation efforts.", product: "Pictum is an AI-powered interactive solution that enhances aquarium visits by identifying marine species in real time. Engaging and educational, it supports biodiversity awareness while collecting valuable behavioral data for research and conservation.", sectors: ["ENTERTAINMENT", "ROBOTICS / AI"] },
+      { name: "VSTech Sensors", website: "vstech-sensors.com", description: "VSTech-Sensors is a French startup pioneering organic photodiode technology. We develop ultra-thin, flexible image sensors with massive market potential across smart rings, health tracking, biometric security, medical devices, and SWIR imaging.", product: "We showcase the world’s thinnest smart ring, powered by organic photodiodes for discreet, continuous health tracking. Ultra-thin and comfortable, it enables biosensing for wellness, sleep, and activity—combining advanced materials and miniaturized systems.", sectors: ["HEALTH TECH / WELLNESS"] },
+      { name: "WHEELMOVE", website: "wheelmove.eu", description: "WheelMove is a French startup that empowers people with reduced mobility to explore new activities with greater freedom and autonomy. With prototypes already tested across France and first orders underway, commercial launch is set for mid-2026 in Europe, followed by North America.", product: "Ze One is a compact and lightweight solution that allows to transform any manual wheelchair into an all-road wheelchair with electrical assistance, fully independently, enabling users to move on rough surfaces with ease, comfort, and confidence.", sectors: ["HEALTH TECH / WELLNESS"] },
+      { name: "Wheere", website: "wheere.com", description: "Born in France, Wheere set out to solve what GPS couldn’t: accurate tracking indoors and out. Its patented technology uses VHF signals that penetrate 50m of concrete. Already working today with 4 antennas covering 1 km², it will expand worldwide by 2030 through a LEO PNT satellite constellation.", product: "Our patented indoor geolocation technology, with metric-level accuracy, is built on two key components: antennas, on Earth today and satellites tomorrow, that transmit Wheere signals and a receiver equipped with the Wheere module, which processes those signals into precise 3D locations using our proprietary algorithm.", sectors: ["INDUSTRY 4.0"] },
+      { name: "Y-Brush by Biotech Dental", website: "y-brush.com", description: "Y-Brush by Biotech Dental develops fast, connected oral-care solutions that clean teeth in 20 seconds and integrate advanced health sensors. Our innovations combine efficiency, personalization, and daily health monitoring for a smarter oral-care experience.", product: "The next generation of Y-Brush goes far beyond cleaning — it’s a smart, connected toothbrush that acts as a true health companion. Equipped with advanced sensors, it can analyze your breath in real time to detect potential signs of oral or systemic health issues — from gum inflammation and cavities to possible indicators of metabolic or cardiova...", sectors: ["CONSUMER TECH / LIFESTYLE", "HEALTH TECH / WELLNESS"] },
+      { name: "YellowScan", website: "yellowscan.com", description: "YellowScan is a global leader in UAV LiDAR solutions. Founded in 2012 in the South of France, we design and manufacture lightweight, easy-to-use, high-precision LiDAR systems trusted in 64+ countries for surveying, mining, forestry, infrastructure, and environmental monitoring.", product: "The YellowScan Navigator is the first UAV bathymetric LiDAR, enabling high-resolution mapping of shallow waters. Combining topographic and hydrographic data, it delivers precise 3D models of rivers, lakes, coasts, and harbors, opening new possibilities for environmental and industrial surveys.", sectors: ["ROBOTICS / AI", "INDUSTRY 4.0"] },
+      { name: "YNEURO", website: "yneuro.com", description: "YNEURO — The startup behind Neuro ID®, the world’s first neural authentication technology. Powered by a unique neural signature, it replaces passwords and biometrics with seamless, unreplicable, and private-by-design identity verification.", product: "Neuro ID®, the world’s first neural authentication technology. It uses a unique neural signature to verify identity through everyday wearables like smart glasses, earbuds, seamless, unreplicable and private by design.", sectors: ["CYBERSECURITY", "ROBOTICS / AI"] },
+      { name: "Yomy", website: "yomy.care", description: "Yomy develops the first intelligent automatic feeder for cats, designed with veterinarians to improve feline health and well-being. It distributes wet and dry food according to each cat’s real caloric and behavioral needs — combining technology, nutrition and design.", product: "Yomy is the world’s first smart pet feeder that dispenses both pâté and kibbles based on each cat’s unique rhythm and needs. It prevents obesity and urinary issues, keeps wet food fresh for over a week, and allows owners to care remotely through a connected mobile app.", sectors: ["SMART HOME / SMART CITY"] },
+      { name: "ZCE- ZERO CARBON EMISSION", website: "zce-group.com/produits", description: "Development of innovative charging solutions for electric vehicles", product: "Develops innovative charging solutions for electric vehicles, accelerating EV adoption with accessible, efficient charging infrastructure for drivers and fleet operators.", sectors: ["MOBILITY", "GREEN TECH"] },
+      { name: "CoreFactor", website: "corefactor.fr", description: "CoreFactor develops veterinary software solutions that streamline clinic operations and enhance pet owner engagement through digital platforms and AI-powered management tools.", product: "VetCoreSolution (clinic management), VetCoreConnect (pet owner app)", sectors: ["AI Business Solution", "INDUSTRY 4.0"] },
+      { name: "Intellectuality", website: "intellectuality.fr", description: "Intellectuality pioneers Finance 4.0 with generative AI and LLM agents, automating complex financial analysis and reporting for enterprises and financial institutions.", product: "Numexia - AI financial analysis automation platform", sectors: ["FINTECH", "AI Business Solution", "ROBOTICS / AI"] },
+      { name: "5Discovery", website: "5discovery.com", description: "5Discovery creates immersive VR training experiences powered by AI for soft skills development, helping organizations build leadership, management, and inclusion capabilities.", product: "VR learning environments for management/leadership/inclusion training", sectors: ["EDTECH", "ROBOTICS / AI"] },
+      { name: "E2I", website: "e2i.fr", description: "E2I specializes in interactive digital communication solutions, creating engaging experiences on interactive displays and digital supports for businesses and public spaces.", product: "Interactive digital communication platforms and displays", sectors: ["CONSUMER TECH / LIFESTYLE", "SMART HOME / SMART CITY"] },
+      { name: "Priminov", website: "priminov.com", description: "Priminov delivers professional multilingual intelligent communication solutions, enabling instant interpretation and seamless cross-language collaboration for global businesses.", product: "Instant interpretation and multilingual communication platform", sectors: ["AI Business Solution", "TELECOM", "ROBOTICS / AI"] },
+      { name: "DynaTech", website: "dynatech.fr", description: "DynaTech provides project management ERP solutions tailored for construction and infrastructure projects, streamlining workflows and resource allocation.", product: "Daily - construction/project ERP software", sectors: ["INDUSTRY 4.0"] },
+      { name: "Toolkit", website: "toolkit-construction.fr", description: "Toolkit offers comprehensive construction project management solutions, helping teams coordinate, track progress, and optimize building projects from start to finish.", product: "Construction management platform", sectors: ["INDUSTRY 4.0"] },
+      { name: "Horama", website: "horama.ai", description: "Horama develops sovereign AI for computer vision and visual data analysis. Founded by 22-year-old student Baptiste Huvelle, the company serves construction, satellite imagery, and defense sectors.", product: "Custom AI solutions for construction, satellite imagery, defense applications", sectors: ["ROBOTICS / AI", "AI Business Solution", "CYBERSECURITY"] },
+      { name: "Withings", website: "withings.com", description: "Withings is a connected health device specialist and CES regular for 10+ years. The company creates smart health monitoring devices that bring clinical-grade measurements to consumers.", product: "Body Scan 2 - smart scale analyzing 60 biomarkers in 90 seconds with daily personalized health recommendations. Q2 2026 launch at €500.", sectors: ["HEALTH TECH / WELLNESS", "CONSUMER TECH / LIFESTYLE"] },
+      { name: "Tellers.ai", website: "tellers.ai", description: "Tellers is redefining video creation by instantly transforming any article, script, or audio into high-quality video using real footage from your own library or any video database. Empowers storytellers and businesses to create professional-grade videos effortlessly.", product: "AI agent for video editing and generation - 'Cursor for video creation.' Transforms content into videos in just a few clicks without editing skills.", sectors: ["ROBOTICS / AI", "ENTERTAINMENT", "AI Business Solution"] },
+      { name: "Mago", website: "mago.studio", description: "Mago is AI-native software that transforms and stylizes any video (film, 3D animation, text2vid) into any aesthetic through style transfer. Dramatically lowers cost per minute of stylized content across genres like anime, sci-fi, or historical fiction.", product: "Video stylization software for production workflows. Seamlessly transforms videos into any aesthetic style - anime, sci-fi, historical fiction and more.", sectors: ["ROBOTICS / AI", "ENTERTAINMENT"] },
+      { name: "Qista", website: "qista.com", description: "Qista develops French ecological mosquito-control solutions enhanced by AI to monitor mosquito populations in real time and reduce nuisances sustainably without harmful chemicals.", product: "AI-powered ecological mosquito monitoring and control system for sustainable pest management.", sectors: ["GREEN TECH", "ROBOTICS / AI", "SMART HOME / SMART CITY"] },
+      { name: "Facility Project", website: "facility-project.com", description: "A project management software created by experts with more than 20 years' experience. Combines expertise in project management, training and technological innovation. Simple for teams, powerful for leaders.", product: "Project management software for teams and leaders with integrated training and support.", sectors: ["FINTECH", "INDUSTRY 4.0"] },
+      { name: "Advanced Care Technologies", website: "digiskin-act.fr", description: "Founded in 2024, Advanced Care Technologies develops a non-invasive neurostimulation device linked to a remote-monitoring app for patients with limb amputation or peripheral neuropathies.", product: "Non-invasive neurostimulation device with remote monitoring app for amputees and neuropathy patients.", sectors: ["HEALTH TECH / WELLNESS", "ROBOTICS / AI"] },
+      { name: "BA Group", website: "batechgroup.com", description: "BA Group specializes in mobile medical devices, robot and cobot integration for industry, engineering services and logistics and pharmaceutical flow management.", product: "Mobile medical devices, robot/cobot integration, pharmaceutical logistics solutions.", sectors: ["HEALTH TECH / WELLNESS", "INDUSTRY 4.0", "ROBOTICS / AI"] },
+      { name: "BeLiver", website: "beliver.fr", description: "BeLiver helps doctors choose the right cancer treatment from the start. Uses AI and a proteomic approach, analyzing tumor proteins, to predict which therapy will work best, starting with liver cancer.", product: "AI-powered cancer treatment prediction using proteomic tumor analysis, initially for liver cancer.", sectors: ["HEALTH TECH / WELLNESS", "ROBOTICS / AI"] },
+      { name: "Nanomade", website: "nanomade.com", description: "Nanomade develops ultra sensitive deformation sensors that enable any structure to sense, digitize data and become interactive. Applications in advanced HMI, structure monitoring and physiological parameter collection.", product: "Ultra-sensitive deformation sensors for consumer electronics (touch metal), automotive, and industrial applications.", sectors: ["INDUSTRY 4.0", "CONSUMER TECH / LIFESTYLE"] },
+      { name: "Naox Technologies", website: "naox.tech", description: "NaoX Technologies is a neurotech company pioneering discreet, user-friendly brain monitoring solutions. Combines advanced neuroscience with accessible technology.", product: "Discreet brain monitoring solutions for consumer and medical applications.", sectors: ["HEALTH TECH / WELLNESS", "ROBOTICS / AI"] },
+      { name: "Remotion", website: "remotion.rehab", description: "ReMotion develops certified digital rehabilitation solutions using VR, motion tracking, and AI. Designed with therapists, it enhances patient motivation and therapy precision through immersive exercises.", product: "VR-based digital rehabilitation platform with motion tracking and AI for neurological and motor recovery.", sectors: ["HEALTH TECH / WELLNESS", "ROBOTICS / AI"] },
+      { name: "Smartlet", website: "smartlet.io", description: "Smartlet is the first modular strap that lets you wear your mechanical watch and a smartwatch or fitness tracker (Apple, Fitbit, Whoop) on the same wrist. French-designed, patented and Kickstarter-backed.", product: "Modular watch strap combining mechanical watches with smartwatches/fitness trackers on one wrist.", sectors: ["CONSUMER TECH / LIFESTYLE"] },
+      { name: "Cosmo5", website: "cosmo5.com", description: "Cosmo5 is an international marketing group with 1,300 talents across 30 offices in 18 countries. Founded in 2001 as Labelium, rebranded in 2025. Expertise in Media, Commerce, Creativity, Data, and Technology.", product: "Integrated transformation solutions connecting Media, Commerce, Creativity, Data, and Technology.", sectors: ["RETAIL TECH", "AI Business Solution"] },
+      { name: "Nector", website: "nector.fr", description: "Nector is France's first all-inclusive smart-home subscription. One monthly plan covering multi-brand devices, installation, consumables, and full assistance. Security, comfort, and energy unified.", product: "All-inclusive smart home subscription service with devices, installation, and support included.", sectors: ["SMART HOME / SMART CITY", "CONSUMER TECH / LIFESTYLE"] },
+      { name: "Broadpeak", website: "broadpeak.tv", description: "Broadpeak enables streaming platforms and broadband service providers to stream at scale and monetize without limits. Pioneers highest performance video delivery and advertising technologies.", product: "Video delivery and advertising technologies for streaming platforms to improve QoE and grow revenues.", sectors: ["TELECOM", "ENTERTAINMENT"] }
+    ];
+
+    const sectorConfig = {
+      "HEALTH TECH / WELLNESS": { class: "sector-health", icon: "🏥" },
+      "ROBOTICS / AI": { class: "sector-ai", icon: "🤖" },
+      "GREEN TECH": { class: "sector-green", icon: "🌱" },
+      "CYBERSECURITY": { class: "sector-cyber", icon: "🔐" },
+      "CONSUMER TECH / LIFESTYLE": { class: "sector-consumer", icon: "📱" },
+      "SMART HOME / SMART CITY": { class: "sector-smart", icon: "🏠" },
+      "ENTERTAINMENT": { class: "sector-entertainment", icon: "🎬" },
+      "INDUSTRY 4.0": { class: "sector-industry", icon: "⚙️" },
+      "MOBILITY": { class: "sector-mobility", icon: "🚀" },
+      "FINTECH": { class: "sector-fintech", icon: "💳" },
+      "AI Business Solution": { class: "sector-aibiz", icon: "🧠" },
+      "EDTECH": { class: "sector-edtech", icon: "📚" },
+      "RETAIL TECH": { class: "sector-retail", icon: "🛒" },
+      "SPORT TECH": { class: "sector-sport", icon: "⚽" },
+      "TELECOM": { class: "sector-telecom", icon: "📡" },
+      "GAMING": { class: "sector-gaming", icon: "🎮" }
+    };
+
+    function getSectors(s) {
+      if (Array.isArray(s.sectors)) return s.sectors;
+      if (s.sector) return [s.sector];
+      return [];
+    }
+
+    const sectorCounts = {};
+    startups.forEach(s => {
+      getSectors(s).forEach(sector => {
+        sectorCounts[sector] = (sectorCounts[sector] || 0) + 1;
+      });
+    });
+    const sectors = Object.keys(sectorCounts).sort((a, b) => sectorCounts[b] - sectorCounts[a]);
+
+    const sectorSelect = document.getElementById('sector-filter');
+    sectors.forEach(sector => {
+      const opt = document.createElement('option');
+      opt.value = sector;
+      opt.textContent = `${sector} (${sectorCounts[sector]})`;
+      sectorSelect.appendChild(opt);
+    });
+
+    const pillsContainer = document.getElementById('sector-pills');
+    const topSectors = ['All', ...sectors.slice(0, 7)];
+    topSectors.forEach(sector => {
+      const pill = document.createElement('button');
+      pill.className = 'sector-pill' + (sector === 'All' ? ' active' : '');
+      pill.dataset.sector = sector;
+      const config = sectorConfig[sector] || { icon: '💡' };
+      pill.innerHTML = `<span>${config.icon || '📊'}</span>${sector === 'All' ? 'All' : sector.split(' / ')[0]}`;
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.sector-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        sectorSelect.value = sector;
+        renderStartups();
+      });
+      pillsContainer.appendChild(pill);
+    });
+
+    let expandedCards = new Set();
+    let currentFiltered = [];
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function renderStartups() {
+      const search = document.getElementById('search').value.toLowerCase();
+      const sector = document.getElementById('sector-filter').value;
+      
+      currentFiltered = [];
+      startups.forEach((s, originalIndex) => {
+        const matchSearch = !search || 
+          s.name.toLowerCase().includes(search) ||
+          s.description.toLowerCase().includes(search) ||
+          s.product.toLowerCase().includes(search);
+        
+        const sectorList = getSectors(s);
+        const matchSector = sector === 'All' || sectorList.includes(sector);
+        
+        if (matchSearch && matchSector) {
+          currentFiltered.push({ ...s, originalIndex });
+        }
+      });
+
+      const grid = document.getElementById('startup-grid');
+      
+      if (currentFiltered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column: 1/-1">
+            <div class="empty-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <h3 class="empty-title">No startups found</h3>
+            <p class="empty-text">Try adjusting your search or filters</p>
+          </div>
+        `;
+      } else {
+        grid.innerHTML = currentFiltered.map((s) => {
+          const isExpanded = expandedCards.has(s.originalIndex);
+          const websiteUrl = s.website.startsWith('http') ? s.website : 'https://' + s.website;
+          const sectorList = getSectors(s);
+          
+          const badgesHtml = sectorList.map(sec => {
+            const cfg = sectorConfig[sec] || { class: '', icon: '💡' };
+            return `<span class="sector-badge ${cfg.class}">${cfg.icon} ${escapeHtml(sec)}</span>`;
+          }).join('');
+          
+          return `
+            <article class="startup-card">
+              <div class="card-content">
+                <div class="card-header">
+                  <div class="card-title-group">
+                    <h2 class="card-title">${escapeHtml(s.name)}</h2>
+                    <p class="card-website">${escapeHtml(s.website)}</p>
+                  </div>
+                  <a href="${escapeHtml(websiteUrl)}" target="_blank" rel="noopener" class="card-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+                <div class="sector-badges">${badgesHtml}</div>
+                <p class="card-description ${isExpanded ? 'expanded' : ''}">${escapeHtml(s.description)}</p>
+                ${isExpanded ? `
+                  <div class="card-product">
+                    <p class="product-label">Product / Innovation</p>
+                    <p class="product-text">${escapeHtml(s.product)}</p>
+                  </div>
+                ` : ''}
+              </div>
+              <button class="card-toggle ${isExpanded ? 'expanded' : ''}" data-idx="${s.originalIndex}">
+                ${isExpanded ? 'Show less' : 'View product'}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+            </article>
+          `;
+        }).join('');
+      }
+
+      const info = document.getElementById('results-info');
+      let infoText = `Showing <strong>${currentFiltered.length}</strong> startup${currentFiltered.length !== 1 ? 's' : ''}`;
+      if (sector !== 'All') infoText += ` in <span class="highlight">${escapeHtml(sector)}</span>`;
+      if (search) infoText += ` matching "<span class="highlight">${escapeHtml(search)}</span>"`;
+      info.innerHTML = infoText;
+      
+      document.getElementById('showing-count').textContent = currentFiltered.length;
+    }
+
+    document.getElementById('startup-grid').addEventListener('click', function(e) {
+      const toggleBtn = e.target.closest('.card-toggle');
+      if (toggleBtn) {
+        const idx = parseInt(toggleBtn.dataset.idx, 10);
+        if (expandedCards.has(idx)) {
+          expandedCards.delete(idx);
+        } else {
+          expandedCards.add(idx);
+        }
+        renderStartups();
+      }
+    });
+
+    document.getElementById('search').addEventListener('input', (e) => {
+      document.getElementById('clear-search').classList.toggle('visible', e.target.value.length > 0);
+      renderStartups();
+    });
+
+    document.getElementById('clear-search').addEventListener('click', () => {
+      document.getElementById('search').value = '';
+      document.getElementById('clear-search').classList.remove('visible');
+      renderStartups();
+    });
+
+    document.getElementById('sector-filter').addEventListener('change', (e) => {
+      document.querySelectorAll('.sector-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.sector === e.target.value);
+      });
+      renderStartups();
+    });
+
+    renderStartups();
+    </script>
+</body>
+</html>
