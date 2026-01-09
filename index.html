@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CES 2026 French Startups Directory | French Tech Journal</title>
-    <meta name="description" content="Discover 112 innovative French startups exhibiting at CES 2026 in Las Vegas. Search by sector, explore products, and connect with France's tech ecosystem.">
+    <meta name="description" content="Discover 114 innovative French startups exhibiting at CES 2026 in Las Vegas. Search by sector, explore products, and connect with France's tech ecosystem.">
     <meta property="og:title" content="CES 2026 French Startups Directory">
-    <meta property="og:description" content="112 innovative French startups at CES Las Vegas - Health Tech, AI, Green Tech, Cybersecurity and more.">
+    <meta property="og:description" content="114 innovative French startups at CES Las Vegas - Health Tech, AI, Green Tech, Cybersecurity and more.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -432,6 +432,14 @@
         .sector-gaming { background: rgba(168,85,247,0.15); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.3); }
     </style>
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EY1HWJ9DS8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EY1HWJ9DS8');
+</script>
 <body>
     <div class="bg-effects"></div>
     <header>
@@ -446,7 +454,7 @@
                 </div>
                 <div class="header-stats">
                     <span class="stat-badge">🌍 Las Vegas</span>
-                    <span class="stat-badge highlight">👥 <span id="total-count">112</span> startups</span>
+                    <span class="stat-badge highlight">👥 <span id="total-count">114</span> startups</span>
                 </div>
             </div>
         </div>
@@ -463,12 +471,12 @@
                         </button>
                     </div>
                     <select class="sector-select" id="sector-filter">
-                        <option value="All">All Sectors (112)</option>
+                        <option value="All">All Sectors (114)</option>
                     </select>
                 </div>
                 <div class="sector-pills" id="sector-pills"></div>
                 <p class="results-info" id="results-info">
-                    Showing <strong id="showing-count">112</strong> startups
+                    Showing <strong id="showing-count">114</strong> startups
                 </p>
             </section>
             <div class="startup-grid" id="startup-grid"></div>
@@ -593,7 +601,9 @@
       { name: "Cosmo5", website: "cosmo5.com", description: "Cosmo5 is an international marketing group with 1,300 talents across 30 offices in 18 countries. Founded in 2001 as Labelium, rebranded in 2025. Expertise in Media, Commerce, Creativity, Data, and Technology.", product: "Integrated transformation solutions connecting Media, Commerce, Creativity, Data, and Technology.", sectors: ["RETAIL TECH", "AI Business Solution"] },
       { name: "Nector", website: "nector.fr", description: "Nector is France's first all-inclusive smart-home subscription. One monthly plan covering multi-brand devices, installation, consumables, and full assistance. Security, comfort, and energy unified.", product: "All-inclusive smart home subscription service with devices, installation, and support included.", sectors: ["SMART HOME / SMART CITY", "CONSUMER TECH / LIFESTYLE"] },
       { name: "Broadpeak", website: "broadpeak.tv", description: "Broadpeak enables streaming platforms and broadband service providers to stream at scale and monetize without limits. Pioneers highest performance video delivery and advertising technologies.", product: "Video delivery and advertising technologies for streaming platforms to improve QoE and grow revenues.", sectors: ["TELECOM", "ENTERTAINMENT"] },
-      { name: "EX9", website: "ex9.tech", description: "Driverless electric yard trucks for manufacturing and logistics. EX9 is an Automation Enabler for Industrial Transport in Yard Operations.", product: "Complete service solution of Autonomous Yard Tractors for movements of heavy loads including trailers, containers, swap bodies, pallets, and coils.", sectors: ["INDUSTRY 4.0", "ROBOTICS / AI", "MOBILITY"] }
+      { name: "EX9", website: "ex9.tech", description: "Driverless electric yard trucks for manufacturing and logistics. EX9 is an Automation Enabler for Industrial Transport in Yard Operations.", product: "Complete service solution of Autonomous Yard Tractors for movements of heavy loads including trailers, containers, swap bodies, pallets, and coils.", sectors: ["INDUSTRY 4.0", "ROBOTICS / AI", "MOBILITY"] },
+      { name: "Mithieux Metal Protec", website: "mithieux.fr", description: "Designer and applicator of innovative and high-performance anti-corrosion solutions", product: "Our autonomous outdoor operations service combines advanced safety systems, proven reliability, high performance, actionable data, and sustainability — all designed to deliver lasting value from day one.", sectors: ["INDUSTRY 4.0", "ROBOTICS / AI"] },
+      { name: "LYNRED", website: "lynred.com", description: "Selling a comprehensive lineup of infrared imaging sensors that cover the entire infrared spectrum (SWIR, MWIR, LWIR, and VLWIR) through a variety of technologies (MCT, InGaAs, microbolometer)", product: "LYNRED offers infrared detectors designed to meet the needs of a broad range of markets. Our products are compatible with the demands of a variety of industries. They are reliable and robust enough for defense applications, compact and powerful enough for surveillance and leisure applications, and stable and sensitive enough for industrial thermography, industrial systems, and thermography for fire and rescue applications.", sectors: ["INDUSTRY 4.0", "ROBOTICS / AI"] }
     ];
 
     const sectorConfig = {
