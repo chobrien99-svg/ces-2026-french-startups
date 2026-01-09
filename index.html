@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CES 2026 French Startups Directory | French Tech Journal</title>
-    <meta name="description" content="Discover 111 innovative French startups exhibiting at CES 2026 in Las Vegas. Search by sector, explore products, and connect with France's tech ecosystem.">
+    <meta name="description" content="Discover 112 innovative French startups exhibiting at CES 2026 in Las Vegas. Search by sector, explore products, and connect with France's tech ecosystem.">
     <meta property="og:title" content="CES 2026 French Startups Directory">
-    <meta property="og:description" content="111 innovative French startups at CES Las Vegas - Health Tech, AI, Green Tech, Cybersecurity and more.">
+    <meta property="og:description" content="112 innovative French startups at CES Las Vegas - Health Tech, AI, Green Tech, Cybersecurity and more.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        
         :root {
             --bg-primary: #0a0f1a;
             --bg-secondary: #111827;
@@ -28,7 +27,6 @@
             --accent-blue: #3b82f6;
             --accent-violet: #8b5cf6;
         }
-        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, var(--bg-primary) 0%, #0f172a 50%, #1e1b4b 100%);
@@ -36,7 +34,6 @@
             min-height: 100vh;
             line-height: 1.6;
         }
-        
         .bg-effects {
             position: fixed;
             inset: 0;
@@ -64,7 +61,6 @@
             background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
             filter: blur(60px);
         }
-        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -72,7 +68,6 @@
             position: relative;
             z-index: 1;
         }
-        
         header {
             position: sticky;
             top: 0;
@@ -82,7 +77,6 @@
             border-bottom: 1px solid var(--border-subtle);
             padding: 1.25rem 0;
         }
-        
         .header-content {
             display: flex;
             flex-wrap: wrap;
@@ -90,13 +84,11 @@
             justify-content: space-between;
             gap: 1rem;
         }
-        
         .brand {
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
-        
         .brand-icon {
             width: 40px;
             height: 40px;
@@ -108,12 +100,10 @@
             font-size: 1.25rem;
             box-shadow: 0 4px 15px rgba(139,92,246,0.3);
         }
-        
         .brand-text {
             display: flex;
             flex-direction: column;
         }
-        
         .brand-label {
             font-size: 0.65rem;
             font-weight: 600;
@@ -121,7 +111,6 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
-        
         .brand-title {
             font-size: 1.35rem;
             font-weight: 700;
@@ -130,12 +119,10 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
         .header-stats {
             display: flex;
             gap: 0.5rem;
         }
-        
         .stat-badge {
             display: flex;
             align-items: center;
@@ -147,29 +134,24 @@
             font-size: 0.75rem;
             color: var(--text-secondary);
         }
-        
         .stat-badge.highlight {
             background: rgba(59,130,246,0.1);
             border-color: rgba(59,130,246,0.3);
             color: #93c5fd;
         }
-        
         .filters-section {
             padding: 1.5rem 0;
         }
-        
         .search-row {
             display: flex;
             gap: 0.75rem;
             flex-wrap: wrap;
         }
-        
         .search-wrapper {
             flex: 1;
             min-width: 250px;
             position: relative;
         }
-        
         .search-icon {
             position: absolute;
             left: 1rem;
@@ -178,7 +160,6 @@
             color: var(--text-muted);
             pointer-events: none;
         }
-        
         .search-input {
             width: 100%;
             padding: 0.875rem 2.75rem 0.875rem 2.75rem;
@@ -189,14 +170,12 @@
             font-size: 0.875rem;
             transition: all 0.2s;
         }
-        
         .search-input::placeholder { color: var(--text-muted); }
         .search-input:focus {
             outline: none;
             border-color: rgba(59,130,246,0.5);
             box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
         }
-        
         .clear-btn {
             position: absolute;
             right: 0.75rem;
@@ -212,7 +191,6 @@
         }
         .clear-btn.visible { display: block; }
         .clear-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.1); }
-        
         .sector-select {
             padding: 0.875rem 2.5rem 0.875rem 1rem;
             background: rgba(255,255,255,0.05);
@@ -232,14 +210,12 @@
             border-color: rgba(59,130,246,0.5);
         }
         .sector-select option { background: #1e293b; }
-        
         .sector-pills {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
             margin-top: 1rem;
         }
-        
         .sector-pill {
             display: flex;
             align-items: center;
@@ -260,7 +236,6 @@
             border-color: rgba(59,130,246,0.4);
             color: #93c5fd;
         }
-        
         .results-info {
             margin-top: 1rem;
             font-size: 0.8rem;
@@ -268,18 +243,15 @@
         }
         .results-info strong { color: var(--text-primary); }
         .results-info .highlight { color: var(--accent-blue); }
-        
         .startup-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 1rem;
             padding-bottom: 3rem;
         }
-        
         @media (max-width: 400px) {
             .startup-grid { grid-template-columns: 1fr; }
         }
-        
         .startup-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
@@ -293,9 +265,7 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 40px -10px rgba(0,0,0,0.4);
         }
-        
         .card-content { padding: 1.25rem; }
-        
         .card-header {
             display: flex;
             justify-content: space-between;
@@ -303,9 +273,7 @@
             gap: 0.75rem;
             margin-bottom: 0.75rem;
         }
-        
         .card-title-group { flex: 1; min-width: 0; }
-        
         .card-title {
             font-size: 1rem;
             font-weight: 600;
@@ -315,7 +283,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
         .card-website {
             font-size: 0.7rem;
             color: var(--text-muted);
@@ -323,7 +290,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
         .card-link {
             flex-shrink: 0;
             padding: 0.5rem;
@@ -337,14 +303,12 @@
             background: rgba(59,130,246,0.2);
             color: #93c5fd;
         }
-        
         .sector-badges {
             display: flex;
             flex-wrap: wrap;
             gap: 0.35rem;
             margin-bottom: 0.75rem;
         }
-        
         .sector-badge {
             display: inline-flex;
             align-items: center;
@@ -354,7 +318,6 @@
             font-size: 0.65rem;
             font-weight: 500;
         }
-        
         .card-description {
             font-size: 0.8rem;
             color: var(--text-secondary);
@@ -367,13 +330,11 @@
         .card-description.expanded {
             -webkit-line-clamp: unset;
         }
-        
         .card-product {
             margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px solid var(--border-subtle);
         }
-        
         .product-label {
             font-size: 0.65rem;
             font-weight: 600;
@@ -382,13 +343,11 @@
             letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
         }
-        
         .product-text {
             font-size: 0.8rem;
             color: #cbd5e1;
             line-height: 1.55;
         }
-        
         .card-toggle {
             width: 100%;
             padding: 0.65rem;
@@ -415,7 +374,6 @@
         .card-toggle.expanded svg {
             transform: rotate(180deg);
         }
-        
         .empty-state {
             text-align: center;
             padding: 4rem 2rem;
@@ -441,7 +399,6 @@
             font-size: 0.85rem;
             color: var(--text-muted);
         }
-        
         footer {
             border-top: 1px solid var(--border-subtle);
             padding: 1.5rem 0;
@@ -457,7 +414,6 @@
             text-decoration: none;
         }
         .footer-link:hover { color: var(--accent-blue); }
-        
         .sector-health { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
         .sector-ai { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
         .sector-green { background: rgba(132,204,22,0.15); color: #bef264; border: 1px solid rgba(132,204,22,0.3); }
@@ -478,7 +434,6 @@
 </head>
 <body>
     <div class="bg-effects"></div>
-    
     <header>
         <div class="container">
             <div class="header-content">
@@ -491,12 +446,11 @@
                 </div>
                 <div class="header-stats">
                     <span class="stat-badge">🌍 Las Vegas</span>
-                    <span class="stat-badge highlight">👥 <span id="total-count">111</span> startups</span>
+                    <span class="stat-badge highlight">👥 <span id="total-count">112</span> startups</span>
                 </div>
             </div>
         </div>
     </header>
-    
     <main>
         <div class="container">
             <section class="filters-section">
@@ -509,28 +463,23 @@
                         </button>
                     </div>
                     <select class="sector-select" id="sector-filter">
-                        <option value="All">All Sectors (111)</option>
+                        <option value="All">All Sectors (112)</option>
                     </select>
                 </div>
-                
                 <div class="sector-pills" id="sector-pills"></div>
-                
                 <p class="results-info" id="results-info">
-                    Showing <strong id="showing-count">111</strong> startups
+                    Showing <strong id="showing-count">112</strong> startups
                 </p>
             </section>
-            
             <div class="startup-grid" id="startup-grid"></div>
         </div>
     </main>
-    
     <footer>
         <div class="container">
             <p class="footer-text">Data sourced from Business France • CES 2026 Las Vegas</p>
             <p class="footer-text" style="margin-top:0.25rem">© 2026 <a href="https://frenchtechjournal.com" class="footer-link">French Tech Journal</a></p>
         </div>
     </footer>
-
     <script>
     const startups = [
       { name: "Acquire To Decide (A2D)", website: "a2d.ai", description: "A2D, an 8-year-old innovative software company, turns raw field data into actionable insights. Our AI solution lets project and asset managers monitor infrastructure health, anticipate issues, and make faster, safer, more informed decisions.", product: "A2D offers the market’s only solution combining secure cloud SaaS (less than 24 hours to analyze defects and display them on your structure’s digital twin) and embedded artificial intelligence (Real-time detection of areas of interest from a video stream) for the inspection of infrastructure assets", sectors: ["SMART HOME / SMART CITY", "ROBOTICS / AI"] },
@@ -643,7 +592,8 @@
       { name: "Smartlet", website: "smartlet.io", description: "Smartlet is the first modular strap that lets you wear your mechanical watch and a smartwatch or fitness tracker (Apple, Fitbit, Whoop) on the same wrist. French-designed, patented and Kickstarter-backed.", product: "Modular watch strap combining mechanical watches with smartwatches/fitness trackers on one wrist.", sectors: ["CONSUMER TECH / LIFESTYLE"] },
       { name: "Cosmo5", website: "cosmo5.com", description: "Cosmo5 is an international marketing group with 1,300 talents across 30 offices in 18 countries. Founded in 2001 as Labelium, rebranded in 2025. Expertise in Media, Commerce, Creativity, Data, and Technology.", product: "Integrated transformation solutions connecting Media, Commerce, Creativity, Data, and Technology.", sectors: ["RETAIL TECH", "AI Business Solution"] },
       { name: "Nector", website: "nector.fr", description: "Nector is France's first all-inclusive smart-home subscription. One monthly plan covering multi-brand devices, installation, consumables, and full assistance. Security, comfort, and energy unified.", product: "All-inclusive smart home subscription service with devices, installation, and support included.", sectors: ["SMART HOME / SMART CITY", "CONSUMER TECH / LIFESTYLE"] },
-      { name: "Broadpeak", website: "broadpeak.tv", description: "Broadpeak enables streaming platforms and broadband service providers to stream at scale and monetize without limits. Pioneers highest performance video delivery and advertising technologies.", product: "Video delivery and advertising technologies for streaming platforms to improve QoE and grow revenues.", sectors: ["TELECOM", "ENTERTAINMENT"] }
+      { name: "Broadpeak", website: "broadpeak.tv", description: "Broadpeak enables streaming platforms and broadband service providers to stream at scale and monetize without limits. Pioneers highest performance video delivery and advertising technologies.", product: "Video delivery and advertising technologies for streaming platforms to improve QoE and grow revenues.", sectors: ["TELECOM", "ENTERTAINMENT"] },
+      { name: "EX9", website: "ex9.tech", description: "Driverless electric yard trucks for manufacturing and logistics. EX9 is an Automation Enabler for Industrial Transport in Yard Operations.", product: "Complete service solution of Autonomous Yard Tractors for movements of heavy loads including trailers, containers, swap bodies, pallets, and coils.", sectors: ["INDUSTRY 4.0", "ROBOTICS / AI", "MOBILITY"] }
     ];
 
     const sectorConfig = {
@@ -716,24 +666,20 @@
     function renderStartups() {
       const search = document.getElementById('search').value.toLowerCase();
       const sector = document.getElementById('sector-filter').value;
-      
       currentFiltered = [];
       startups.forEach((s, originalIndex) => {
         const matchSearch = !search || 
           s.name.toLowerCase().includes(search) ||
           s.description.toLowerCase().includes(search) ||
           s.product.toLowerCase().includes(search);
-        
         const sectorList = getSectors(s);
         const matchSector = sector === 'All' || sectorList.includes(sector);
-        
         if (matchSearch && matchSector) {
           currentFiltered.push({ ...s, originalIndex });
         }
       });
 
       const grid = document.getElementById('startup-grid');
-      
       if (currentFiltered.length === 0) {
         grid.innerHTML = `
           <div class="empty-state" style="grid-column: 1/-1">
@@ -749,12 +695,10 @@
           const isExpanded = expandedCards.has(s.originalIndex);
           const websiteUrl = s.website.startsWith('http') ? s.website : 'https://' + s.website;
           const sectorList = getSectors(s);
-          
           const badgesHtml = sectorList.map(sec => {
             const cfg = sectorConfig[sec] || { class: '', icon: '💡' };
             return `<span class="sector-badge ${cfg.class}">${cfg.icon} ${escapeHtml(sec)}</span>`;
           }).join('');
-          
           return `
             <article class="startup-card">
               <div class="card-content">
@@ -784,13 +728,11 @@
           `;
         }).join('');
       }
-
       const info = document.getElementById('results-info');
       let infoText = `Showing <strong>${currentFiltered.length}</strong> startup${currentFiltered.length !== 1 ? 's' : ''}`;
       if (sector !== 'All') infoText += ` in <span class="highlight">${escapeHtml(sector)}</span>`;
       if (search) infoText += ` matching "<span class="highlight">${escapeHtml(search)}</span>"`;
       info.innerHTML = infoText;
-      
       document.getElementById('showing-count').textContent = currentFiltered.length;
     }
 
